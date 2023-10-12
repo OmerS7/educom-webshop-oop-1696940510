@@ -236,13 +236,6 @@ function doRetreiveOrderId(){
     return $data;
 }
 
-function showResponsePage ($data)
-{
-    beginDocument();
-    showHeadSection();
-    showBodySection($data);
-    endDocument();
-}
 
 function getArrayVar($array, $key, $default='')
 {
@@ -259,135 +252,140 @@ function getUrlVar($key,$default='')
     return getArrayVar($_GET, $key, $default);
 }
 
-function beginDocument()
-{
-    echo '<!doctype html>'.PHP_EOL.'<html>'.PHP_EOL;
-}
+// function beginDocument()
+// {
+//     echo '<!doctype html>'.PHP_EOL.'<html>'.PHP_EOL;
+// }
 
-function showHeadSection()
-{
-    echo '  <head>' . PHP_EOL;
-    echo '    <link rel="stylesheet"  href="CSS/stylesheet.css">' . PHP_EOL;
-    echo '  </head>' . PHP_EOL;
-}
+// function showHeadSection()
+// {
+//     echo '  <head>' . PHP_EOL;
+//     echo '    <link rel="stylesheet"  href="CSS/stylesheet.css">' . PHP_EOL;
+//     echo '  </head>' . PHP_EOL;
+// }
 
-function showBodySection($data)
-{
-    echo '  <body>' . PHP_EOL;
-    showHeader($data['page']);
-    showMenu($data);
-    showContent($data);
-    showFooter();
-    echo '  </body>' .PHP_EOL;
-}
+// function showBodySection($data)
+// {
+//     echo '  <body>' . PHP_EOL;
+//     showHeader($data['page']);
+//     showMenu($data);
+//     showContent($data);
+//     showFooter();
+//     echo '  </body>' .PHP_EOL;
+// }
 
-function endDocument()
-{
-    echo '</html>';
-}
+// function endDocument()
+// {
+//     echo '</html>';
+// }
 
-function showHeader($page)
-{
-    echo '<header><h1>';
-    switch($page)
-   {
-    case 'home':
-        require_once('home.php');
-        showHomeHeader();
-        break;
-    case 'about':
-        require_once('about.php');
-        showAboutHeader();
-        break;
-    case 'webshop':
-        require_once('webshop.php');
-        showWebshopHeader();
-        break;
-    case 'shoppingCart':
-        require_once('shoppingCart.php');
-        showShoppingCartHeader();
-        break;
-    case 'updateCart':
-        require_once('shoppingCart.php');
-        showShoppingCartHeader();
-        break;
-    case 'deleteFromCart':
-        require_once('shoppingCart.php');
-        showShoppingCartHeader();
-        break;
-    case 'checkOutCart':
-        require_once('shoppingCart.php');
-        showShoppingCartHeader();
-        break;
-    case 'orders':
-        require_once('orders.php');
-        showOrdersHeader();
-        break;
-    case 'orderDetail':
-        require_once('orderDetail.php');
-        showOrderDetailHeader();
-        break;
-    case 'contact':
-        require_once ('contact.php');
-        showContactHeader();
-        break;
-    case 'register':
-        require_once ('register.php');
-        showRegisterHeader();
-        break;
-    case 'login':
-        require_once('login.php');
-        showLoginHeader();
-        break;
-    case 'changepassword':
-        require_once('passwordC.php');
-        showChangePasswordHeader();
-        break;
+// function showHeader($page)
+// {
+//     echo '<header><h1>';
+//     switch($page)
+//    {
+//     case 'home':
+//         require_once('home.php');
+//         showHomeHeader();
+//         break;
+//     case 'about':
+//         require_once('about.php');
+//         showAboutHeader();
+//         break;
+//     case 'webshop':
+//         require_once('webshop.php');
+//         showWebshopHeader();
+//         break;
+//     case 'shoppingCart':
+//         require_once('shoppingCart.php');
+//         showShoppingCartHeader();
+//         break;
+//     case 'updateCart':
+//         require_once('shoppingCart.php');
+//         showShoppingCartHeader();
+//         break;
+//     case 'deleteFromCart':
+//         require_once('shoppingCart.php');
+//         showShoppingCartHeader();
+//         break;
+//     case 'checkOutCart':
+//         require_once('shoppingCart.php');
+//         showShoppingCartHeader();
+//         break;
+//     case 'orders':
+//         require_once('orders.php');
+//         showOrdersHeader();
+//         break;
+//     case 'orderDetail':
+//         require_once('orderDetail.php');
+//         showOrderDetailHeader();
+//         break;
+//     case 'contact':
+//         require_once ('contact.php');
+//         showContactHeader();
+//         break;
+//     case 'register':
+//         require_once ('register.php');
+//         showRegisterHeader();
+//         break;
+//     case 'login':
+//         require_once('login.php');
+//         showLoginHeader();
+//         break;
+//     case 'changepassword':
+//         require_once('passwordC.php');
+//         showChangePasswordHeader();
+//         break;
 
-   }
+//    }
    
-    echo '</h1></header>' . PHP_EOL;
-}
+//     echo '</h1></header>' . PHP_EOL;
+// }
 
-function showMenuItem($page, $menuItem)
+// function showMenuItem($page, $menuItem)
+// {
+//     echo '<li><a href="index.php?page=' . $page . '">';
+//     if(count($menuItem)>1){
+//         echo"<img src=\"Images/$menuItem[1]\">";
+//     }
+//     echo $menuItem[0];
+//     echo '</a></li>';
+// }
+
+
+// function showMenu($data) {  
+//     echo '<div class="menu">   
+//         <ul>';  
+//     foreach($data['menu'] as $link => $menuItem) { 
+//         showMenuItem($link, $menuItem); 
+//     }
+//     echo ' 
+//         </ul>   
+//     </div>' . PHP_EOL;  
+// }
+
+// function showContent($data)
+// {
+//     echo '<section>';
+//     echo '<span class="error">'. getArrayVar($data, 'genericErr'). '</span>'; 
+
+function showResponsePage ($data)
 {
-    echo '<li><a href="index.php?page=' . $page . '">';
-    if(count($menuItem)>1){
-        echo"<img src=\"Images/$menuItem[1]\">";
-    }
-    echo $menuItem[0];
-    echo '</a></li>';
-}
 
 
-function showMenu($data) {  
-    echo '<div class="menu">   
-        <ul>';  
-    foreach($data['menu'] as $link => $menuItem) { 
-        showMenuItem($link, $menuItem); 
-    }
-    echo ' 
-        </ul>   
-    </div>' . PHP_EOL;  
-}
-
-function showContent($data)
-{
-    echo '<section>';
-    echo '<span class="error">'. getArrayVar($data, 'genericErr'). '</span>'; 
     switch($data['page'])
     {
         case 'home':
-            require_once('home.php');
-            showHomeContent();
+            require_once('views/homeDoc.php');
+            $view = new HomeDoc($data);
             break;
         case 'about':
-            require_once('about.php');
-            showAboutContent();
+            require_once('views/aboutDoc.php');
+            $view = new AboutDoc($data);
             break;
         case 'contact':
-            require_once('contact.php');
-            showContactForm($data);
+            require_once('views/contactDoc.php');
+            $view = new ContactDoc($data);
             break;
         case 'webshop':
             require_once('webshop.php');
@@ -418,8 +416,8 @@ function showContent($data)
             showContactThanks($data);
             break;
         case 'register':
-            require_once('register.php');
-            showRegisterForm($data);
+            require_once('views/registerDoc.php');
+            $view = new RegisterDoc($data);
             break;
         case 'login':
             require_once('login.php');
@@ -438,8 +436,7 @@ function showContent($data)
             showPageNotFound();
             break;
         }   
-    echo '</section>'; 
-
+        $view -> show();
 }
 
 function showPageNotFound(){
@@ -448,13 +445,13 @@ function showPageNotFound(){
     </div>';
 }
 
-function showFooter()
-{
-    echo ' <footer>
-    <p>&copy;</p>
-    <p>2023-</p>
-    <p>Omer Seker</p>
-</footer>';
-}
+// function showFooter()
+// {
+//     echo ' <footer>
+//     <p>&copy;</p>
+//     <p>2023-</p>
+//     <p>Omer Seker</p>
+// </footer>';
+// }
 
 ?>
