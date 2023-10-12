@@ -1,0 +1,10 @@
+[email]|[name]|[password]
+coach@man-kind.nl|Geert Weggemans|halt!
+jan@hotmail.com|jan|jan
+jo@hotmail.com|jo|jo
+otseker@hotmail.com|Omer Seker|hi
+piet@hotmail.com|piet|piet
+kees@hotmail.com||kees
+anna@hotmail.com|anna|anna
+klaas@hotmail.com|klaas|klaas
+stijn@hotmail.com|stijn|stijn
