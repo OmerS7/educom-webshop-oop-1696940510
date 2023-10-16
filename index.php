@@ -386,8 +386,8 @@ function showResponsePage ($data)
             $view = new contactDoc($data);
             break;
         case 'webshop':
-            require_once('webshop.php');
-            showWebshopContent($data);
+            require_once('views/webshopDoc.php');
+            $view = new webshopDoc($data);
             break;
         case 'shoppingCart':
             require_once('shoppingCart.php');

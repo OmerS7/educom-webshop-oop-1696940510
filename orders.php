@@ -23,8 +23,8 @@ echo '<table>';
                   <input type="hidden" name="action" value="viewDetails">
                   <input type="hidden" name="id" value="'.$order['id'].'">
                   <input type="hidden" name="page" value="orderDetail">
-                  <input type="submit" value="Jouw bestelling">
                   </form>';
+            echo '<a href="index.php?page=orderDetail&id=' . $order['id'] . '">input type="submit" value="Jouw bestelling"></a>';
             echo '</tr>';
 
 echo '</table>';
