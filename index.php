@@ -375,15 +375,15 @@ function showResponsePage ($data)
     {
         case 'home':
             require_once('views/homeDoc.php');
-            $view = new HomeDoc($data);
+            $view = new homeDoc($data);
             break;
         case 'about':
             require_once('views/aboutDoc.php');
-            $view = new AboutDoc($data);
+            $view = new aboutDoc($data);
             break;
         case 'contact':
             require_once('views/contactDoc.php');
-            $view = new ContactDoc($data);
+            $view = new contactDoc($data);
             break;
         case 'webshop':
             require_once('webshop.php');
@@ -415,11 +415,11 @@ function showResponsePage ($data)
             break;
         case 'register':
             require_once('views/registerDoc.php');
-            $view = new RegisterDoc($data);
+            $view = new registerDoc($data);
             break;
         case 'login':
-            require_once('login.php');
-            showLoginForm($data);
+            require_once('views/loginDoc.php');
+            $view = new loginDoc($data);
             break;
         case 'changepassword':
             require_once('passwordC.php');
