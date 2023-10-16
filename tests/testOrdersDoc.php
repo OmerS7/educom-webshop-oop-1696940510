@@ -1,5 +1,5 @@
 <?php
-require_once ('../views/webshopDoc.php');
+require_once ('../views/ordersDoc.php');
 
 $data = [ 'menu' => [ 'pagina1' => ['pagina 1'], 
                       'pagina2' => ['pag 2', 'cartPlus.svg']],
@@ -10,6 +10,5 @@ $data = [ 'menu' => [ 'pagina1' => ['pagina 1'],
             ]
         ];
         
-$view=new webshopDoc($data);
+$view=new ordersDoc($data);
 $view-> show();
-

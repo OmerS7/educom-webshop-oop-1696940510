@@ -1,13 +1,13 @@
 <?php
-require_once('basicDoc');
-class ordersDoc extends basicDoc{
+require_once('productDoc.php');
+class ordersDoc extends productDoc{
     protected function showHeader(){
         echo 'Jouw Orders';
     }
 
-    function showContent($data){
+    function showContent(){
     echo '<table>';    
-        if (isset($data['succes']) && $data['succes']) {
+        if (isset($this->data['succes']) && $this->data['succes']) {
             $orders = getAllOrders();
             foreach ($orders as $order) {
                 echo '<tr>';
@@ -21,12 +21,13 @@ class ordersDoc extends basicDoc{
                 $number_format = number_format($order['total'], 2, ',', '.');
                 echo "<h3>Totaal: &euro;$number_format</h3>";
                 echo "</div>";
-                echo '<form method="POST" action="index.php">
-                    <input type="hidden" name="action" value="viewDetails">
-                    <input type="hidden" name="id" value="'.$order['id'].'">
-                    <input type="hidden" name="page" value="orderDetail">
-                    <input type="submit" value="Jouw bestelling">
-                    </form>';
+                // echo '<form method="POST" action="index.php">
+                //     <input type="hidden" name="action" value="viewDetails">
+                //     <input type="hidden" name="id" value="'.$order['id'].'">
+                //     <input type="hidden" name="page" value="orderDetail">
+                //     <input type="submit" value="Jouw bestelling">
+                //     </form>';
+                $this->showActionForm('viewDetails', 'orderDetail', $order['id'], NULL, 'Jouw bestelling');
                 echo '</tr>';
 
     echo '</table>';

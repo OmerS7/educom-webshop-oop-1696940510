@@ -1,15 +1,15 @@
 <?php
 
-require_once('basicDoc.php');
-class webshopDoc extends basicDoc{
+require_once('productDoc.php');
+class webshopDoc extends productDoc{
     protected function showHeader(){
         echo "Webshop";
     }
 
     protected function showContent() {
         if (isset($this->data['succes']) && $this->data['succes']) {
-            $this->products = $this->data['products'];
-            foreach ($this->products as $product) {
+            $products = $this->data['products'];
+            foreach ($products as $product) {
                 echo '<div class="webproduct">';
                 echo "<img src='Images/$product[productimage]' alt='$product[productname]'>";
                 echo "<h3>$product[productname]</h3>";
@@ -18,7 +18,7 @@ class webshopDoc extends basicDoc{
                 echo "<p>Prijs: &euro;$number_format</p>";
                 echo "</a>";
                 echo "</div>";
-               
+                $this->showActionForm("addToCart", "webshop", $product['productId'], "cartPlus.svg");
             }
         }
     }

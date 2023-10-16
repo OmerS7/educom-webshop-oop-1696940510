@@ -203,7 +203,7 @@ function getOrderById($id){
         return $orders;
     } finally{
         mysqli_close($conn);
-    }å
+    }
 }
 
 

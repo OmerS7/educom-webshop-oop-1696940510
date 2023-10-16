@@ -239,12 +239,12 @@ td {
     width: 25px;
 }
 
-.delete-button-wrapper {
+.action-button-wrapper {
     position: relative;
     height: 100%;
 }
 
-.delete-button {
+.action-button {
     display: flex;
     justify-content: center;
     align-items: center;
