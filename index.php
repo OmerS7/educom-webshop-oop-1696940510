@@ -371,8 +371,6 @@ function getUrlVar($key,$default='')
 
 function showResponsePage ($data)
 {
-
-
     switch($data['page'])
     {
         case 'home':
