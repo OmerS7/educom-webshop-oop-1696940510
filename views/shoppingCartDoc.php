@@ -1,13 +1,12 @@
 <?php
-require_once('basicDoc.php')
-
+require_once('basicDoc.php');
 class shoppingCartDoc extends basicDoc{
 
     function showHeader(){
     echo 'Winkelwagen';
     }
 
-    function showContent($data){
+    function showContent(){
         echo '<table>';
         if(empty($_SESSION['cart'])){
             echo '<img src="Images/winkelmandIcon.svg" class="iconWinkelmand">';

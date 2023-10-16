@@ -390,8 +390,8 @@ function showResponsePage ($data)
             $view = new webshopDoc($data);
             break;
         case 'shoppingCart':
-            require_once('shoppingCart.php');
-            showShoppingCartContent($data);
+            require_once('views/shoppingCartDoc.php');
+            $view = new shoppingCartDoc($data);
             break;
         case 'checkOutCart':
             require_once('shoppingCart.php');
@@ -422,8 +422,8 @@ function showResponsePage ($data)
             $view = new loginDoc($data);
             break;
         case 'changepassword':
-            require_once('passwordC.php');
-            showChangePasswordForm($data);
+            require_once('views/passwordCDoc.php');
+            $view = new passwordCDoc($data);
             break;
         case 'logout':
             doLogoutUser();
