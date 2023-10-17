@@ -210,7 +210,7 @@ function doRetreiveOrders(){
     $data['succes'] = false;
     try{
         require_once 'productService.php';
-        
+        $userId = getLoggedInUser();
         $data['orders'] = getOrders();
         $data['succes'] = true;
     }
@@ -226,6 +226,7 @@ function doRetreiveOrderId(){
     $data['succes'] = false;
     try{
         require_once 'productService.php';
+        $userId = getLoggedInUser();
         $id = getOrderById('id');
         $data['orders'] = getOrder($id);
         $data['succes'] = true;
