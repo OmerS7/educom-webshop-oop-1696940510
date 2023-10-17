@@ -2,7 +2,7 @@
 require_once('basicDoc.php');
 
 abstract class productDoc extends basicDoc{
-    protected function showActionForm($action, $page, $id = NULL, $buttonLogo = NULL, $text = "send"){
+    protected function showActionForm($action, $page, $id = NULL, $buttonLogo = NULL, $text = "", $className = NULL, $amount = NULL){
         echo '<form method="POST" action="index.php">          
             <input type="hidden" name="action" value="'.$action.'">';
         if(!empty($id)){
@@ -11,9 +11,13 @@ abstract class productDoc extends basicDoc{
         echo '<input type="hidden" name="page" value="' . $page . '">';
         if(!empty($buttonLogo)){
             echo'
-                 <div class="action-button-wrapper">
-                 <input type="image" class="action-button" src="Images/'. $buttonLogo.'" alt="'.$text.'" width="20" height="20">
-             </div>';
+                 <div class="' . $className . '-button-wrapper">';
+                 if ($className == "tick") {
+                    echo '<input type="number" class="number-button" name="amount" min="1" value="' . $amount . '">';
+                 }
+                echo '
+                 <input type="image" class="' . $className . '-button" src="Images/'. $buttonLogo.'" alt="'.$text.'">';
+                '</div>';
         } else {
             echo'
                 <input type="submit" value="'.$text.'">';

@@ -229,22 +229,22 @@ td {
         margin-left: 68px;
     }
 
+.tick-button {
+   width: 25px;
+}
+
 .number-button {
     width: 25px;
     padding-top: 3px;
     margin-right: -45px;
 }
 
-.tick-button {
-    width: 25px;
-}
-
-.action-button-wrapper {
+.delete-button-wrapper {
     position: relative;
     height: 100%;
 }
 
-.action-button {
+.delete-button {
     display: flex;
     justify-content: center;
     align-items: center;
