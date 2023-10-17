@@ -4,9 +4,9 @@ require_once ('../views/ordersDoc.php');
 $data = [ 'menu' => [ 'pagina1' => ['pagina 1'], 
                       'pagina2' => ['pag 2', 'cartPlus.svg']],
             'succes' => true, 
-            'products' => [
-                ['productId' => 3, 'productname' => 'nikeair', 'productimage' => 'cartPLus.svg', 'price' => 14.95],
-                ['productId' => 2, 'productname' => 'Jordan', 'productimage' => 'cartPLus.svg', 'price' => 24.95]
+            'orders' => [
+                ['id' => 3, 'orderDate' => '17-10-2023', 'orderNumber' => 'c2300008', 'total' => 14.95],
+                ['id' => 2, 'orderDate' => '18-10-2023', 'orderNumber' => 'c2300009', 'total' => 24.95]
             ]
         ];
         

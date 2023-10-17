@@ -2,7 +2,7 @@
 require_once('basicDoc.php');
 
 abstract class productDoc extends basicDoc{
-    public function showActionForm($action, $page, $id = NULL, $buttonLogo = NULL, $text = "send"){
+    protected function showActionForm($action, $page, $id = NULL, $buttonLogo = NULL, $text = "send"){
         echo '<form method="POST" action="index.php">          
             <input type="hidden" name="action" value="'.$action.'">';
         if(!empty($id)){

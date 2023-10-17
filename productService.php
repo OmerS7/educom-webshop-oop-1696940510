@@ -14,5 +14,5 @@ function getOrders($userId){
 }
 
 function getOrder($id, $userId){
-    return getOrderById($id);
+    return getOrderById($id,$userId);
 }

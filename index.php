@@ -210,7 +210,7 @@ function doRetreiveOrders(){
     $data['succes'] = false;
     try{
         require_once 'productService.php';
-        $userId = getLoggedInUser();
+        $userId = getLoggedInUserId();
         $data['orders'] = getOrders($userId);
         $data['succes'] = true;
     }
@@ -226,9 +226,9 @@ function doRetreiveOrderId(){
     $data['succes'] = false;
     try{
         require_once 'productService.php';
-        $userId = getLoggedInUser();
-        $id = getOrderById('id');
-        $data['orders'] = getOrder($id);
+        $id = getPostVar('id');
+        $userId = getLoggedInUserId();
+        $data['orders'] = getOrder($id, $userId);
         $data['succes'] = true;
     }
     catch(Exception $e){
@@ -400,8 +400,8 @@ function showResponsePage ($data)
             showCheckOutCartContent($data);
             break;
         case 'orders':
-            require_once('orders.php');
-            showOrdersContent($data);
+            require_once('views/ordersDoc.php');
+            $view = new ordersDoc($data);
             break;
         case 'orderDetail':
             require_once('orderDetail.php');
