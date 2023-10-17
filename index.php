@@ -210,6 +210,7 @@ function doRetreiveOrders(){
     $data['succes'] = false;
     try{
         require_once 'productService.php';
+        
         $data['orders'] = getOrders();
         $data['succes'] = true;
     }

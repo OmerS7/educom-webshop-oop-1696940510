@@ -163,7 +163,7 @@ function saveCheckOutCart($userId,$cart){
     } 
 }
 
-function getAllOrders(){
+function getAllOrders($userId){
     $conn = connectDatabase();
     try{
         $userId = mysqli_real_escape_string($conn, $userId);
@@ -184,7 +184,7 @@ function getAllOrders(){
     }
 }
 
-function getOrderById($id){
+function getOrderById($id, $userId){
     $conn = connectDatabase();
     try{
         $id = mysqli_real_escape_string($conn, $id);
@@ -193,7 +193,7 @@ function getOrderById($id){
               FROM orders AS o
               JOIN productline AS pl ON pl.orderid = o.id
               JOIN products AS p ON p.productId = pl.productId
-              WHERE o.id = $id, o.userId = $useerId";
+              WHERE o.id = $id AND o.userId = $userId";
         $result = mysqli_query($conn, $sql);
         $orders = array(); // Maak een array om de orders op te slaan
 
