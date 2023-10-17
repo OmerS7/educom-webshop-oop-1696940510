@@ -211,7 +211,7 @@ function doRetreiveOrders(){
     try{
         require_once 'productService.php';
         $userId = getLoggedInUser();
-        $data['orders'] = getOrders();
+        $data['orders'] = getOrders($userId);
         $data['succes'] = true;
     }
     catch(Exception $e){

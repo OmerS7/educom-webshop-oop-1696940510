@@ -6,7 +6,7 @@ function showOrdersHeader(){
 function showOrdersContent($data){
 echo '<table>';    
     if (isset($data['succes']) && $data['succes']) {
-        $orders = getAllOrders();
+        $orders = $data['orders'];
         foreach ($orders as $order) {
             echo '<tr>';
             echo '<div class="order">';
