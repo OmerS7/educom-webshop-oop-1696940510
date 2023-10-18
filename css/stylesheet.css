@@ -1,11 +1,9 @@
 /* Cascade Style Sheet for this website */
 body {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     line-height: normal;
-    padding-top: 0%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -26,8 +24,11 @@ footer{
     background-color: rgb(0, 0, 0);
     color: white;
     font-size: 10px;
+    margin-top: 0;
     padding-right: 10px;
 }
+
+
 
 /*menuKnoppen*/
 .menu {
@@ -65,6 +66,8 @@ footer{
     padding-bottom: 2px;
 }
 
+
+
 /*inhoud van Homepagina*/
 .welcomeText {
     display: flex;
@@ -72,6 +75,8 @@ footer{
     color: darkgrey;
     font-size: 15px;
 }
+
+
 
 /*inhoud van Aboutpagina*/
 .aboutContent {
@@ -103,12 +108,89 @@ footer{
 
 
 
+/*Contact inhoud*/
+
 input {
     width: 400px;
     border: none;
     border-radius: 5px;
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
 }
+
+.invoervelden{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nameStyling,
+.phoneStyling,
+.emailStyling {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.nameStyling label,
+.phoneStyling label,
+.emailStyling label {
+    color: rgb(135, 135, 135);
+    width: 150px;
+}
+
+.nameStyling input,
+.phoneStyling input,
+.emailStyling input {
+    width: 400px;
+    height: 15px;
+}
+
+.nameStyling span,
+.phoneStyling span,
+.emailStyling span {
+    margin-left: 7px;
+}
+
+.salutationS{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -328px;
+}
+
+.salutationS label {
+    color: rgb(135, 135, 135);
+}
+
+.salutationS span {
+    margin-left: 7px;
+}
+.salutationS select {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 0.5px solid;
+    border-color: rgb(216, 216, 216);
+    border-radius: 10px;
+    margin-left: 50px;
+}
+
+.preferenceS{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preferenceS label{
+    color: rgb(135, 135, 135);
+}
+
+.preferenceS label input{
+    margin-left: 10px;
+}
+
+.preferenceS span {
+    margin-left: 7px;
+}
+
 
 input[type="text"]{
     display: flex;
@@ -142,19 +224,6 @@ input[type="submit"]:hover {
 }
 
 
-label {
-    width: 150px;
-    display: inline-block;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: darkgray;
-}
-
-select {
-    margin-left: 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: 0.5px solid;
-    border-color: rgb(216, 216, 216);
-}
 
 textarea{
     display: flex;
@@ -167,11 +236,6 @@ textarea{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
-.commentContact{
-    display: flex;
-    
-}
-
 .preferenceSentence{
     color: darkgray;
 }
@@ -180,8 +244,9 @@ textarea{
     margin-left: 10px;
 }
 
-span {
+.error {
 color: rgb(143, 0, 0);
+
 }
 
 .thankYou{
