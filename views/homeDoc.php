@@ -6,8 +6,8 @@
     }
     
     protected function showContent() {
-        echo '<div class="welcometext">
-        <p>Welkom op de eerste website van de softwaredeveloper &Ouml;mer. Op deze website vind je informatie over Educom.</p>
+        echo '<div class="welcomeText">
+        <p>Welkom op de eerste website van de softwaredeveloper &Ouml;mer. &nbsp;Op deze website vind je informatie over Educom.</p>
         </div>';
     }
   }

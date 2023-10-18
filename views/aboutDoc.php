@@ -6,14 +6,16 @@ class aboutDoc extends basicDoc{
     }
 
     protected function showContent(){
-        echo '<div>
-                <p> Ik ben &Ouml;mer, een 24 jarige pas afgestuurdeerde bedrijfskundigen uit Amsterdam. Ik ben altijd opzoek naar nieuwe kansen om te groeien.</p>
-                <p>In mijn vrije tijd houd ik mijzelf graag bezig met de volgende activiteiten:</p>
+        echo '<div class="aboutContent">
+                <div class="aboutText">
+                    <p> Ik ben &Ouml;mer, een 24 jarige pas afgestuurdeerde bedrijfskundigen uit Amsterdam.<br>Ik ben altijd opzoek naar nieuwe kansen om te groeien.<br></br> In mijn vrije tijd houd ik mijzelf graag bezig met de volgende activiteiten:</p>
+                </div>
+                <ul>
                     <li>Gezellig drankje doen met vrienden</li>
                     <li>Naar de film gaan</li>
                     <li>Thuis op de bank Netflixen</li>
                     <li>Reizen</li>
-                </p>
+                </ul>
              </div>';
     }
 }

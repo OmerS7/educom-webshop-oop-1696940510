@@ -48,11 +48,11 @@ class contactDoc extends basicDoc{
                 <span class="error">* '.$this->data['nameErr'].'</span><br><br>
     
                 <label for="phone">Telefoonnummer:</label>
-                <input type="tel" id="phone" name="phone" value="'.$this->data['phone'].'">
+                <input type="text" id="phone" name="phone" value="'.$this->data['phone'].'">
                 <span class="error">* '.$this->data['phoneErr'].'</span><br><br>
     
                 <label for="email">E-mailadres:</label>
-                <input type="email" id="email" name="email" value="'.$this->data['email'].'">
+                <input type="text" id="email" name="email" value="'.$this->data['email'].'">
                 <span class="error">* '.$this->data['emailErr'].'</span><br><br>
     
                 <p class="preferenceSentence">Kies uw voorkeur:</p>

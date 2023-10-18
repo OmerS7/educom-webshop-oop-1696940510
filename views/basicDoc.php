@@ -13,22 +13,16 @@ class Basicdoc extends HtmlDoc{
     protected function showHeader() { 
         echo "Basic";
     }
+
     private function showPageHeader(){
         echo '<header><h1>';
         $this->showHeader(); 
        echo '</h1></header>' . PHP_EOL;
     }
-    private function showMenuItem($page, $menuItem){
-        echo '<li><a href="index.php?page=' . $page . '">';
-        if(count($menuItem)>1){
-            echo"<img src=\"Images/$menuItem[1]\">";
-        }
-        echo $menuItem[0];
-        echo '</a></li>';
-    }
+
     private function showMenu(){
         echo '<div class="menu">   
-        <ul>';  
+        <ul class=>';  
         foreach($this->data['menu'] as $link => $menuItem) { 
             $this->showMenuItem($link, $menuItem); 
         }
@@ -36,15 +30,27 @@ class Basicdoc extends HtmlDoc{
         </ul>   
     </div>' . PHP_EOL;
     }
+
+    private function showMenuItem($page, $menuItem){
+        echo '<li class="menuItem"><a href="index.php?page=' . $page . '">';
+        if(count($menuItem)>1){
+            echo"<img src=\"Images/$menuItem[1]\">";
+        }
+        echo $menuItem[0];
+        echo '</a></li>';
+    }
+
     protected function showContent(){
         echo 'Welkom op de bacic doc';
     }
+
     private function showPageContent(){
         echo '<section>';
         echo '<span class="error">'. $this->getArrayVar($this->data, 'genericErr'). '</span>';
         $this->showContent(); 
         echo '</section>'; 
     }
+
     private function showFooter(){
         echo ' <footer>
         <p>&copy;</p>
@@ -52,6 +58,7 @@ class Basicdoc extends HtmlDoc{
         <p>Omer Seker</p>
     </footer>';
     }
+
     protected function showHeadContent(){
         echo '<title>';
         $this->showHeader();

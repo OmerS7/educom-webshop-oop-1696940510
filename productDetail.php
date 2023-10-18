@@ -19,5 +19,6 @@ function showProductDetailContent($data) {
     } else {
         echo "Product niet gevonden.";
     }
+    return $product;
 }
 ?>
