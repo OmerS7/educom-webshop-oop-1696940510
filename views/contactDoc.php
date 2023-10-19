@@ -64,8 +64,8 @@ class contactDoc extends basicDoc{
                 </div>
 
                 <div class="preferenceS">
-                    <label for="preferenceSentence">Kies uw voorkeur:</label>
-                    <label>
+                    <label for="preferenceSentence">Communicatie voorkeur:</label>
+                    <label class="telefoonnumer">
                         <input type="radio" name="communication" '.($communication =="Telefoonnummer"? "checked" : "").' value="Telefoonnummer">
                         Telefoonnummer
                     </label><br>

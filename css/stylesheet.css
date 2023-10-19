@@ -176,8 +176,8 @@ input {
 .preferenceS{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
-    margin-left: 435px;
 }
 
 .preferenceS label{
@@ -187,10 +187,11 @@ input {
 
 .preferenceS label input{
     margin-right: 3px;
+    margin-left: 55px;
 }
 
 .preferenceS span {
-    margin-left: 7px;
+    margin-left: 5px;
 }
 
 input[type="text"]{
@@ -200,13 +201,14 @@ input[type="text"]{
 }
 
 input[type="radio"]{
-    margin-left: 10px;
+    margin-right: 10px;
     width: auto;
     box-shadow: none;
     background-color: transparent;
 }
 
 input[type="submit"] {
+    display: flex;
     width: auto;
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
     background-color: transparent;
@@ -227,23 +229,28 @@ input[type="submit"]:hover {
 .commentContact{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
-    margin-left: 585px;
-    margin-bottom: 10px;
+    margin-left: 225px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .commentContact input{
-    margin-left: 10px;
+    margin-left: 5px;
+}
+
+.commentContact span{
+    margin-left: 7px;
 }
 
 textarea{
     width: 400px;
-   
     border: none;
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-}
+} 
 
 .preferenceSentence{
     color: darkgray;
@@ -317,7 +324,7 @@ td {
 
 .product-name {
     margin-top: -20px;
-    margin-bottom: 5px; /* Voegt wat ruimte toe onder de productnaam */
+    margin-bottom: 5px; 
 }
 
 .product-photo {
@@ -330,13 +337,6 @@ td {
     align-items: center;
     flex-direction: column;
 }
-
-
-/*.tick-button-wrapper {
-        margin-top: 5px;
-        margin-bottom: 10px;
-        margin-left: 68px;
-    }*/
 
 .tick-button {
     margin-left: auto;
@@ -418,11 +418,82 @@ button.shopButton:hover{
 }
 
 .addToCartButton {
-    background-color: transparent; /* Or any color you prefer */
+    background-color: transparent; 
     border: none;
     height: 20px;
     padding: 20px 20px;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.passwordChange, 
+.passwordChangeS, 
+.repeatpasswordS,
+.passwordSt,
+.repeatpasswordSt
+  {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    color: rgb(135, 135, 135);
+}
+
+.naamStyling2,
+.emailStyling2
+{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    color: rgb(135, 135, 135);
+}
+
+.passwordSt {
+    margin-top: -8px;
+    margin-left: 2px;
+}
+
+.passwordChangeS{
+    margin-left: 8px;
+}
+
+.repeatpasswordS{
+    margin-right: 43px;
+}
+
+.emailStyling2 label{
+    margin-right: -73px;
+}
+
+.passwordChange input, 
+.passwordChangeS input, 
+.repeatpasswordS input,
+.naamStyling2 input,
+.emailStyling2 input,
+.passwordSt input,
+.repeatpasswordSt input{
+    margin-left: 10px;
+}
+
+.passwordChange span, 
+.passwordChangeS span, 
+.repeatpasswordS span,
+.passwordSt span,
+.repeatpasswordSt span,
+.emailStyling2 {
+    margin-left: 10px;
+}
+
+.changePasswordButton, .signUpButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.changePasswordButton input, .signUpButton input{
+    margin-right: 520px;
+    margin-top: 5px;
+    margin-bottom: 20px;
 }
