@@ -10,7 +10,7 @@ class RegisterDoc extends basicDoc{
   
     echo '<form method="POST" action="index.php">
 
-        <div class="naamStyling">
+        <div class="naamStyling2">
             <label for="name">Naam:</label>
             <input type="text" id="name" name="name" value="'.$this->data["username"].'">
             <span class="error">* '.$this->data["usernameErr"].'</span><br><br>
