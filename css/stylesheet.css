@@ -175,22 +175,23 @@ input {
 
 .preferenceS{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    margin-left: 435px;
 }
 
 .preferenceS label{
+    margin-right: 20px;
     color: rgb(135, 135, 135);
 }
 
 .preferenceS label input{
-    margin-left: 10px;
+    margin-right: 3px;
 }
 
 .preferenceS span {
     margin-left: 7px;
 }
-
 
 input[type="text"]{
     display: flex;
@@ -213,8 +214,8 @@ input[type="submit"] {
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    margin-bottom: 10px;
-    margin-left: 536px;
+    margin-top: 40px;
+    margin-left: 1000px;
     transition: transform 0.3s;
     cursor: pointer;
 }
@@ -223,13 +224,21 @@ input[type="submit"]:hover {
     transform: translate(10px);
 }
 
+.commentContact{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 585px;
+    margin-bottom: 10px;
+}
 
+.commentContact input{
+    margin-left: 10px;
+}
 
 textarea{
-    display: flex;
     width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+   
     border: none;
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
     border-radius: 5px;

@@ -53,8 +53,7 @@ class Basicdoc extends HtmlDoc{
 
     private function showFooter(){
         echo ' <footer>
-        <p>&copy;</p>
-        <p>2023-</p>
+        <p>&copy;2023&nbsp;</p>
         <p>Omer Seker</p>
     </footer>';
     }

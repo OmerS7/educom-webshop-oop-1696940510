@@ -7,6 +7,7 @@ class HtmlDoc{
         echo '  <head>' . PHP_EOL;
     }
     protected function showHeadContent(){
+        echo '    <meta name="viewport" content="width=device-width, initial-scale=1.0">' . PHP_EOL;
         echo '    <link rel="stylesheet"  href="CSS/stylesheet.css">' . PHP_EOL;
     }
     private function showHeadEnd(){

@@ -34,43 +34,54 @@ class contactDoc extends basicDoc{
         //$commentErr = $this->data['commentErr'];
     
         echo '<form method="POST" action="index.php">
-                <label for="salutation">Kies uw aanhef:</label>
-                <select id="salutation" name="salutation">
-                    <option value="" '. ($salutation == "" ? "selected" : "") . '></option>
-                    <option value="sir" '. ($salutation == "sir" ? "selected" : "") . '>Heer</option>
-                    <option value="madam" '. ($salutation == "madam" ? "selected" : "") . '>Mevrouw</option>
-                    <option value="other" '. ($salutation == "other" ? "selected" : "") .'>Anders</option>
-                </select>
-                <span class="error">* '.$this->data ['salutationErr'].'</span><br><br>
-    
-                <label for="name">Naam:</label>
-                <input type="text" id="name" name="name" value="'.$this->data['name'].'">
-                <span class="error">* '.$this->data['nameErr'].'</span><br><br>
-    
-                <label for="phone">Telefoonnummer:</label>
-                <input type="text" id="phone" name="phone" value="'.$this->data['phone'].'">
-                <span class="error">* '.$this->data['phoneErr'].'</span><br><br>
-    
-                <label for="email">E-mailadres:</label>
-                <input type="text" id="email" name="email" value="'.$this->data['email'].'">
-                <span class="error">* '.$this->data['emailErr'].'</span><br><br>
-    
-                <p class="preferenceSentence">Kies uw voorkeur:</p>
-                <label>
-                    <input type="radio" name="communication" '.($communication =="Telefoonnummer"? "checked" : "").' value="Telefoonnummer">
-                    Telefoonnummer
-                </label><br>
-                <label>
-                    <input type="radio" name="communication" '.($communication =="E-mailadres" ? "checked" : "").' value="E-mailadres">
-                    E-mailadres
-                </label>
-                <span class="error">* '.$this->data ['communicationErr'].'</span><br><br>
-                <div class="commentContact">
-                <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Voer hier je opmerkingen in">'.$this->data['comment'].'</textarea>
-                <span class="error">* '.$this->data['commentErr'].'</span><br><br>
+                <div class="salutationS">
+                    <label for="salutation">Kies uw aanhef:</label>
+                    <select id="salutation" name="salutation">
+                        <option value="" '. ($salutation == "" ? "selected" : "") . '></option>
+                        <option value="sir" '. ($salutation == "sir" ? "selected" : "") . '>Heer</option>
+                        <option value="madam" '. ($salutation == "madam" ? "selected" : "") . '>Mevrouw</option>
+                        <option value="other" '. ($salutation == "other" ? "selected" : "") .'>Anders</option>
+                    </select>
+                    <span class="error">* '.$this->data ['salutationErr'].'</span><br><br>
+                </div>        
+
+                <div class="invoervelden">
+                    <div class="nameStyling">
+                        <label for="name">Naam:</label>
+                        <input type="text" id="name" name="name" value="'.$this->data['name'].'"placeholder="Jouw naam">
+                        <span class="error">* '.$this->data['nameErr'].'</span><br><br>
+                    </div> 
+                    <div class="phoneStyling">
+                        <label for="phone">Telefoonnummer:</label>
+                        <input type="text" id="phone" name="phone" value="'.$this->data['phone'].'"placeholder="Jouw telefoonnummer">
+                        <span class="error">* '.$this->data['phoneErr'].'</span><br><br>
+                    </div>    
+                    <div class= emailStyling>
+                        <label for="email">E-mailadres:</label>
+                        <input type="text" id="email" name="email" value="'.$this->data['email'].'"placeholder="Jouw e-mailadres">
+                        <span class="error">* '.$this->data['emailErr'].'</span><br><br>
+                    </div>    
                 </div>
-                <input type="hidden" name="page" value="contact">
-                <input type="submit" value="Verzend">
-                </form>';
+
+                <div class="preferenceS">
+                    <label for="preferenceSentence">Kies uw voorkeur:</label>
+                    <label>
+                        <input type="radio" name="communication" '.($communication =="Telefoonnummer"? "checked" : "").' value="Telefoonnummer">
+                        Telefoonnummer
+                    </label><br>
+                    <label>
+                        <input type="radio" name="communication" '.($communication =="E-mailadres" ? "checked" : "").' value="E-mailadres">
+                        E-mailadres
+                    </label>
+                    <span class="error">* '.$this->data ['communicationErr'].'</span><br><br>
+                </div>    
+
+                <div class="commentContact">
+                    <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Voer hier je opmerkingen in">'.$this->data['comment'].'</textarea>
+                    <span class="error">* '.$this->data['commentErr'].'</span><br><br>
+                    <input type="hidden" name="page" value="contact">
+                    <input type="submit" value="Verzend">
+                </div>    
+            </form>';
         }
 }
