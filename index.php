@@ -1,7 +1,7 @@
 <?php
 
-require_once("session_manager.php");
-require_once("utils.php");
+// require_once("session_manager.php");
+// require_once("utils.php");
 
 // $page = getRequestedPage();
 // $data= processRequest($page);
@@ -104,7 +104,7 @@ require_once("utils.php");
     //     $data['menu']['login'] = ["LOGIN"];
     // }
     // return $data;
-}
+//  }
 
 
 function doStoreContact($data) {
@@ -239,15 +239,15 @@ function doRetreiveOrderId(){
 }
 
 
-function getArrayVar($array, $key, $default='')
-{
-    return isset ($array[$key]) ? $array[$key] : $default;
-}
+// function getArrayVar($array, $key, $default='')
+// {
+//     return isset ($array[$key]) ? $array[$key] : $default;
+// }
 
-function getPostVar($key,$default='')
-{
-    return getArrayVar($_POST, $key, $default);
-}
+// function getPostVar($key,$default='')
+// {
+//     return getArrayVar($_POST, $key, $default);
+// }
 
 // function getUrlVar($key,$default='')
 // {

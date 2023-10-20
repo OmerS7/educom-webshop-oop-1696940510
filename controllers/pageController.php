@@ -1,6 +1,6 @@
 <?php
-require_once('../views/userModel.php');
-require_once('../views/shopModel.php');
+require_once('models/userModel.php');
+require_once('models/shopModel.php');
 
 class pageController{
 

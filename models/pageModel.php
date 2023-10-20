@@ -1,6 +1,8 @@
 <?php
 
-require_once('../controllers/pageController.php');
+require_once("session_manager.php");
+require_once("utils.php");
+
 
 class PageModel {
  
@@ -8,7 +10,7 @@ class PageModel {
    protected $isPost = false;
    public $menu;
    public $errors = array();
-   public $genericErr = '';
+   public $genericErr = "";
    protected $sessionManager;
    
 
@@ -35,13 +37,21 @@ class PageModel {
       }
    }
   
-   protected function setPage($newPage) {
+    protected function setPage($newPage) {
         $this->page = $newpage;
-   } 
-           
-   protected function getUrlVar($key, $default = '') {
+    } 
+   
+    protected function getArrayVar($array, $key, $default=''){
+        return isset ($array[$key]) ? $array[$key] : $default;
+    }
+
+    protected function getPostVar($key, $default = '') {
+        return getArrayVar($_POST, $key, $default);
+    }
+          
+    protected function getUrlVar($key, $default = '') {
         return getArrayVar($_GET, $key, $default);
-   }
+    }
 
    public function createMenu() {
 	   $this->menu['home'] = new MenuItem('home', 'HOME');
