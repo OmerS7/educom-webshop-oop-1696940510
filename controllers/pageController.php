@@ -93,10 +93,71 @@ class pageController{
     }
 
     private function showResponce(){
-        $this->model->createMenu();
-            require_once('../views/homeDoc.php');
-            $view = new HomeDoc($this->model);
+       $this->model->createMenu();
+
+       switch($data['page']){
+        case 'home':
+            require_once('views/homeDoc.php');
+            $view = new homeDoc($this->model);
             break;
-        }
+        case 'about':
+            require_once('views/aboutDoc.php');
+            $view = new aboutDoc($this->model);
+            break;
+        case 'contact':
+            require_once('views/contactDoc.php');
+            $view = new contactDoc($this->model);
+            break;
+        case 'webshop':
+            require_once('views/webshopDoc.php');
+            $view = new webshopDoc($this->model);
+            break;
+        case 'shoppingCart':
+            require_once('views/shoppingCartDoc.php');
+            $view = new shoppingCartDoc($this->model);
+            break;
+        case 'checkOutCart':
+            require_once('shoppingCart.php');
+            showCheckOutCartContent($this->model);
+            break;
+        case 'orders':
+            require_once('views/ordersDoc.php');
+            $view = new ordersDoc($this->model);
+            break;
+        case 'orderDetail':
+            require_once('orderDetail.php');
+            showOrderDetailContent($this->model);
+            break;
+        case 'detail':
+            require_once('productDetail.php');
+            showProductDetailContent($this->model);
+            break;
+        case 'thanks':
+            require_once('contact.php');
+            showContactThanks($this->model);
+            break;
+        case 'register':
+            require_once('views/registerDoc.php');
+            $view = new registerDoc($this->model);
+            break;
+        case 'login':
+            require_once('views/loginDoc.php');
+            $view = new loginDoc($this->model);
+            break;
+        case 'changepassword':
+            require_once('views/passwordCDoc.php');
+            $view = new passwordCDoc($this->model);
+            break;
+        case 'logout':
+            doLogoutUser();
+            require_once('home.php');
+            showHomeContent();
+            break;   
+        default:
+            showPageNotFound();
+            break;
+        }   
+        $view -> show();
     }
 }
+

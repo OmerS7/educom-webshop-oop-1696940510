@@ -14,10 +14,8 @@ class PageModel {
 
    public function __construct($copy) {
       if (empty($copy)) {
-          // ==> First instance of PageModel
           $this->sessionManager = new SessionManager();
        } else {
-          // ==> Called from the constructor of an extended class.... 
           $this->page = $copy->page;
           $this->isPost = $copy->isPost;
           $this->menu = $copy->menu;
