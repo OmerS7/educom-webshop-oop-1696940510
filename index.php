@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+require_once('controllers/pageController.php');
+$controller = new pageController();
+$controller-> handleRequest();
+
+
 // require_once("session_manager.php");
 // require_once("utils.php");
 

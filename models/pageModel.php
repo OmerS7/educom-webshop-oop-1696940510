@@ -4,7 +4,7 @@ require_once("session_manager.php");
 require_once("utils.php");
 
 
-class PageModel {
+class pageModel {
  
    public $page;
    protected $isPost = false;
@@ -16,7 +16,7 @@ class PageModel {
 
    public function __construct($copy) {
       if (empty($copy)) {
-          $this->sessionManager = new SessionManager();
+          $this->sessionManager = new sessionManager();
        } else {
           $this->page = $copy->page;
           $this->isPost = $copy->isPost;
@@ -37,7 +37,7 @@ class PageModel {
       }
    }
   
-    protected function setPage($newPage) {
+    public function setPage($newPage) {
         $this->page = $newpage;
     } 
    

@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 function doLoginUser($username, $userId) {
     $_SESSION['username'] = $username;
     $_SESSION['userId'] = $userId;

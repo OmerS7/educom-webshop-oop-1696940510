@@ -1,13 +1,13 @@
 <?php
-require_once('models/userModel.php');
-require_once('models/shopModel.php');
+require_once('models/pageModel.php');
+// require_once('models/shopModel.php');
 
 class pageController{
 
     private $model;
 
     public function __construct() {
-        $this->model = new PageModel(NULL);
+        $this->model = new pageModel(NULL);
     }
 
     public function handleRequest(){
@@ -16,16 +16,16 @@ class pageController{
         $this-showResponse();
     }
 
-    private getRequest(){
+    private function getRequest(){
         $this->model->getRequestedPage();
     }
 
-    private processRequest(){
+    private function processRequest(){
         switch($this->model->page){
             case "login":
                 require_once('login.php');
                 $this->model = validateLogin();
-                if ($this->['valid']){
+                if ($this->valid){
                     doLoginUser($this->model['username'], $this->model['userId']);
                     $this->model->page = "home";
                 }
@@ -95,7 +95,7 @@ class pageController{
     private function showResponce(){
        $this->model->createMenu();
 
-       switch($data['page']){
+       switch($this->model->page){
         case 'home':
             require_once('views/homeDoc.php');
             $view = new homeDoc($this->model);
