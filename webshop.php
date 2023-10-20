@@ -1,5 +1,5 @@
 <?php
-require_once("session_manager.php");
+require_once("sessionManager.php");
 require_once("utils.php");
 
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once("session_manager.php");
+require_once("models/sessionManager.php");
 require_once("utils.php");
 
 
@@ -13,18 +13,19 @@ class pageModel {
    public $genericErr = "";
    protected $sessionManager;
    
-
    public function __construct($copy) {
-      if (empty($copy)) {
-          $this->sessionManager = new sessionManager();
-       } else {
-          $this->page = $copy->page;
-          $this->isPost = $copy->isPost;
-          $this->menu = $copy->menu;
-          $this->genericErr = $copy->genericErr;
-          $this->sessionManager = $copy->sessionManager; 
-       }
-   }
+    if (empty($copy)) {
+        // ==> First instance of PageModel
+        $this->sessionManager = new SessionManager();
+     } else {
+        // ==> Called from the constructor of an extended class.... 
+        $this->page = $copy->page;
+        $this->isPost = $copy->isPost;
+        $this->menu = $copy->menu;
+        $this->genericErr = $copy->genericErr;
+        $this->sessionManager = $copy->sessionManager; 
+     }
+ }
 
    public function getRequestedPage() {
 
@@ -38,7 +39,7 @@ class pageModel {
    }
   
     public function setPage($newPage) {
-        $this->page = $newpage;
+        $this->page = $newPage;
     } 
    
     protected function getArrayVar($array, $key, $default=''){
@@ -46,13 +47,13 @@ class pageModel {
     }
 
     protected function getPostVar($key, $default = '') {
-        return getArrayVar($_POST, $key, $default);
+        return $this->getArrayVar($_POST, $key, $default);
     }
           
-    protected function getUrlVar($key, $default = '') {
-        return getArrayVar($_GET, $key, $default);
+    protected function getUrlVar($key,$default='') {
+        return $this->getArrayVar($_GET, $key, $default);
     }
-
+  
    public function createMenu() {
 	   $this->menu['home'] = new MenuItem('home', 'HOME');
        $this->menu['about'] = new MenuItem('about', 'ABOUT');

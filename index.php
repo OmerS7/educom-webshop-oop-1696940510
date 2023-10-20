@@ -3,7 +3,7 @@
 session_start();
 require_once('controllers/pageController.php');
 $controller = new pageController();
-$controller-> handleRequest();
+$controller->handleRequest();
 
 
 // require_once("session_manager.php");
