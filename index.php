@@ -3,9 +3,9 @@
 require_once("session_manager.php");
 require_once("utils.php");
 
-$page = getRequestedPage();
-$data= processRequest($page);
-showResponsePage($data);
+// $page = getRequestedPage();
+// $data= processRequest($page);
+// showResponsePage($data);
 
 function getRequestedPage()
 {
@@ -93,17 +93,17 @@ function processRequest($page){
     }  
     $data['page'] = $page;
     
-    $data['menu'] = array('home' => ['HOME'], 'about' => ['ABOUT'], 'contact' => ['CONTACT'], 'webshop' => ['','NikeLogoWhite.png']);
-    if (isUserLoggedIn()) {
-        $data['menu']['shoppingCart'] = ["","cart.svg"]; 
-        $data['menu']['orders'] = ["","cartorders.svg"];
-        $data['menu']['changepassword'] = ["","lock.svg"];
-        $data['menu']['logout'] = ["" . getLoggedInUser(),"logout.svg"];
-    } else {
-        $data['menu']['register'] = ["REGISTER"];
-        $data['menu']['login'] = ["LOGIN"];
-    }
-    return $data;
+    // $data['menu'] = array('home' => ['HOME'], 'about' => ['ABOUT'], 'contact' => ['CONTACT'], 'webshop' => ['','NikeLogoWhite.png']);
+    // if (isUserLoggedIn()) {
+    //     $data['menu']['shoppingCart'] = ["","cart.svg"]; 
+    //     $data['menu']['orders'] = ["","cartorders.svg"];
+    //     $data['menu']['changepassword'] = ["","lock.svg"];
+    //     $data['menu']['logout'] = ["" . getLoggedInUser(),"logout.svg"];
+    // } else {
+    //     $data['menu']['register'] = ["REGISTER"];
+    //     $data['menu']['login'] = ["LOGIN"];
+    // }
+    // return $data;
 }
 
 

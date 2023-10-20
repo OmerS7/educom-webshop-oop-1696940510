@@ -2,9 +2,11 @@
 require_once("HtmlDoc.php");
 class Basicdoc extends HtmlDoc{
     protected $data;
+
     public function __construct($myData){
         $this->data = $myData;
     }
+    
     protected function getArrayVar($array, $key, $default='')
     {
         return isset ($array[$key]) ? $array[$key] : $default;
