@@ -7,91 +7,91 @@ require_once("utils.php");
 // $data= processRequest($page);
 // showResponsePage($data);
 
-function getRequestedPage()
-{
-    $requested_type = $_SERVER['REQUEST_METHOD'];
-    if ($requested_type == 'POST' )
-    {
-        $requested_page = getPostVar('page','home');
-    }
-    else
-    {
-        $requested_page = getUrlVar('page','home');
-    }
-    return $requested_page;
-} 
+// function getRequestedPage()
+// {
+//     $requested_type = $_SERVER['REQUEST_METHOD'];
+//     if ($requested_type == 'POST' )
+//     {
+//         $requested_page = getPostVar('page','home');
+//     }
+//     else
+//     {
+//         $requested_page = getUrlVar('page','home');
+//     }
+//     return $requested_page;
+// } 
 
-function processRequest($page){ 
-    switch($page){
-        case "login":
-            require_once('login.php');
-            $data = validateLogin();
-            if ($data['valid']){
-                doLoginUser($data['username'], $data['userId']);
-                $page = "home";
-            }
-            break;   
-        case "contact":
-            require_once('contact.php');
-            $data = validateContact();
-            if($data['valid']){
-                $data = doStoreContact($data);
-                if ($data['succes']) {
-                    $page = "thanks";
-                }
-            }    
-            break;      
-        case "logout":
-            require_once('logout.php');
-            doLogoutUser();
-            $page = "home";
-            break;
-        case "changepassword":
-            require_once('passwordC.php');
-            $data = validatePassword();
-            if ($data['valid']){
-                $data = doChangePassword($data);
-                if ($data['succes']) {
-                    $page = "login";
-                    $data['emailErr'] = "";
-                    $data['password'] = "";
-                }
-            }    
-            break;
-        case "register":
-            require_once('register.php');
-            $data = validateRegister();
-            if($data['valid']){
-                $data = doRegisterUser($data);
-                if ($data['succes']){
-                    $page = "home";
-                }
-            }
-            break;
-        case "webshop":
-            require_once('webshop.php');
-            handleAction();
-            $data = doRetreiveProducts();
-            break;
-        case "detail":
-            require_once('productDetail.php');
-            $data = doRetreiveProductId();
-            break;
-        case "shoppingCart":
-            require_once('webshop.php');
-            $data = handleAction();
-            $data = array_merge($data,doRetreiveShoppingCart());
-            break;
-        case "orders":
-            require_once('orders.php');
-            $data = doRetreiveOrders();
-            break;
-        case "orderDetail":
-            require_once('orderDetail.php');
-            $data = doRetreiveOrderId();
-            break;
-    }  
-    $data['page'] = $page;
+// function processRequest($page){ 
+//     switch($page){
+//         case "login":
+//             require_once('login.php');
+//             $data = validateLogin();
+//             if ($data['valid']){
+//                 doLoginUser($data['username'], $data['userId']);
+//                 $page = "home";
+//             }
+//             break;   
+//         case "contact":
+//             require_once('contact.php');
+//             $data = validateContact();
+//             if($data['valid']){
+//                 $data = doStoreContact($data);
+//                 if ($data['succes']) {
+//                     $page = "thanks";
+//                 }
+//             }    
+//             break;      
+//         case "logout":
+//             require_once('logout.php');
+//             doLogoutUser();
+//             $page = "home";
+//             break;
+//         case "changepassword":
+//             require_once('passwordC.php');
+//             $data = validatePassword();
+//             if ($data['valid']){
+//                 $data = doChangePassword($data);
+//                 if ($data['succes']) {
+//                     $page = "login";
+//                     $data['emailErr'] = "";
+//                     $data['password'] = "";
+//                 }
+//             }    
+//             break;
+//         case "register":
+//             require_once('register.php');
+//             $data = validateRegister();
+//             if($data['valid']){
+//                 $data = doRegisterUser($data);
+//                 if ($data['succes']){
+//                     $page = "home";
+//                 }
+//             }
+//             break;
+//         case "webshop":
+//             require_once('webshop.php');
+//             handleAction();
+//             $data = doRetreiveProducts();
+//             break;
+//         case "detail":
+//             require_once('productDetail.php');
+//             $data = doRetreiveProductId();
+//             break;
+//         case "shoppingCart":
+//             require_once('webshop.php');
+//             $data = handleAction();
+//             $data = array_merge($data,doRetreiveShoppingCart());
+//             break;
+//         case "orders":
+//             require_once('orders.php');
+//             $data = doRetreiveOrders();
+//             break;
+//         case "orderDetail":
+//             require_once('orderDetail.php');
+//             $data = doRetreiveOrderId();
+//             break;
+//     }  
+//     $data['page'] = $page;
     
     // $data['menu'] = array('home' => ['HOME'], 'about' => ['ABOUT'], 'contact' => ['CONTACT'], 'webshop' => ['','NikeLogoWhite.png']);
     // if (isUserLoggedIn()) {
@@ -249,10 +249,10 @@ function getPostVar($key,$default='')
     return getArrayVar($_POST, $key, $default);
 }
 
-function getUrlVar($key,$default='')
-{
-    return getArrayVar($_GET, $key, $default);
-}
+// function getUrlVar($key,$default='')
+// {
+//     return getArrayVar($_GET, $key, $default);
+// }
 
 // function beginDocument()
 // {
@@ -371,73 +371,73 @@ function getUrlVar($key,$default='')
 //     echo '<section>';
 //     echo '<span class="error">'. getArrayVar($data, 'genericErr'). '</span>'; 
 
-function showResponsePage ($data)
-{
-    switch($data['page'])
-    {
-        case 'home':
-            require_once('views/homeDoc.php');
-            $view = new homeDoc($data);
-            break;
-        case 'about':
-            require_once('views/aboutDoc.php');
-            $view = new aboutDoc($data);
-            break;
-        case 'contact':
-            require_once('views/contactDoc.php');
-            $view = new contactDoc($data);
-            break;
-        case 'webshop':
-            require_once('views/webshopDoc.php');
-            $view = new webshopDoc($data);
-            break;
-        case 'shoppingCart':
-            require_once('views/shoppingCartDoc.php');
-            $view = new shoppingCartDoc($data);
-            break;
-        case 'checkOutCart':
-            require_once('shoppingCart.php');
-            showCheckOutCartContent($data);
-            break;
-        case 'orders':
-            require_once('views/ordersDoc.php');
-            $view = new ordersDoc($data);
-            break;
-        case 'orderDetail':
-            require_once('orderDetail.php');
-            showOrderDetailContent($data);
-            break;
-        case 'detail':
-            require_once('productDetail.php');
-            showProductDetailContent($data);
-            break;
-        case 'thanks':
-            require_once('contact.php');
-            showContactThanks($data);
-            break;
-        case 'register':
-            require_once('views/registerDoc.php');
-            $view = new registerDoc($data);
-            break;
-        case 'login':
-            require_once('views/loginDoc.php');
-            $view = new loginDoc($data);
-            break;
-        case 'changepassword':
-            require_once('views/passwordCDoc.php');
-            $view = new passwordCDoc($data);
-            break;
-        case 'logout':
-            doLogoutUser();
-            require_once('home.php');
-            showHomeContent();
-            break;   
-        default:
-            showPageNotFound();
-            break;
-        }   
-        $view -> show();
-}
+// function showResponsePage ($data)
+// {
+//     switch($data['page'])
+//     {
+//         case 'home':
+//             require_once('views/homeDoc.php');
+//             $view = new homeDoc($data);
+//             break;
+//         case 'about':
+//             require_once('views/aboutDoc.php');
+//             $view = new aboutDoc($data);
+//             break;
+//         case 'contact':
+//             require_once('views/contactDoc.php');
+//             $view = new contactDoc($data);
+//             break;
+//         case 'webshop':
+//             require_once('views/webshopDoc.php');
+//             $view = new webshopDoc($data);
+//             break;
+//         case 'shoppingCart':
+//             require_once('views/shoppingCartDoc.php');
+//             $view = new shoppingCartDoc($data);
+//             break;
+//         case 'checkOutCart':
+//             require_once('shoppingCart.php');
+//             showCheckOutCartContent($data);
+//             break;
+//         case 'orders':
+//             require_once('views/ordersDoc.php');
+//             $view = new ordersDoc($data);
+//             break;
+//         case 'orderDetail':
+//             require_once('orderDetail.php');
+//             showOrderDetailContent($data);
+//             break;
+//         case 'detail':
+//             require_once('productDetail.php');
+//             showProductDetailContent($data);
+//             break;
+//         case 'thanks':
+//             require_once('contact.php');
+//             showContactThanks($data);
+//             break;
+//         case 'register':
+//             require_once('views/registerDoc.php');
+//             $view = new registerDoc($data);
+//             break;
+//         case 'login':
+//             require_once('views/loginDoc.php');
+//             $view = new loginDoc($data);
+//             break;
+//         case 'changepassword':
+//             require_once('views/passwordCDoc.php');
+//             $view = new passwordCDoc($data);
+//             break;
+//         case 'logout':
+//             doLogoutUser();
+//             require_once('home.php');
+//             showHomeContent();
+//             break;   
+//         default:
+//             showPageNotFound();
+//             break;
+//         }   
+//         $view -> show();
+// }
 
 function showPageNotFound(){
     echo '<div class="content">

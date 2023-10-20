@@ -49,7 +49,7 @@ class pageController{
                 require_once('passwordC.php');
                 $this->model = validatePassword();
                 if ($this->model['valid']){
-                    $this->data = doChangePassword($this->model);
+                    $this->model = doChangePassword($this->model);
                     if ($this->model['succes']) {
                         $this->model->page = "login";
                         $this->model['emailErr'] = "";
@@ -61,7 +61,7 @@ class pageController{
                 require_once('register.php');
                 $this->model = validateRegister();
                 if($this-model['valid']){
-                    $this->model = doRegisterUser($data);
+                    $this->model = doRegisterUser($this->model);
                     if ($this->model['succes']){
                         $this->model->page = "home";
                     }
