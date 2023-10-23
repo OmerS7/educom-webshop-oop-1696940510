@@ -1,6 +1,6 @@
 <?php
-require_once('models/pageModel.php');
-// require_once('models/shopModel.php');
+require_once('models/usermodel.php');
+require_once('models/shopModel.php');
 
 class pageController{
 
@@ -13,7 +13,7 @@ class pageController{
     public function handleRequest(){
         $this->getRequest();
         $this->processRequest();
-        $this-showResponse();
+        $this->showResponse();
     }
 
     private function getRequest(){

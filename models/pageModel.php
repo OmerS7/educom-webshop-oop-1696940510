@@ -1,7 +1,7 @@
 <?php
 
 require_once("models/sessionManager.php");
-require_once("utils.php");
+require_once("models/menuItem.php");
 
 
 class pageModel {
@@ -55,19 +55,19 @@ class pageModel {
     }
   
    public function createMenu() {
-	   $this->menu['home'] = new MenuItem('home', 'HOME');
-       $this->menu['about'] = new MenuItem('about', 'ABOUT');
-       $this->menu['contact'] = new MenuItem('contact', 'CONTACT');
-       $this->menu['webshop'] = new MenuItem('webshop', '','NikeLogoWhite.png');
-       if ($this->sessionManger->isUserLoggedIn()) {
-            $this->menu['logout'] = new MenuItem('logout',"", "logout.svg", 
+	   $this->menu['home'] = new menuItem('home', 'HOME');
+       $this->menu['about'] = new menuItem('about', 'ABOUT');
+       $this->menu['contact'] = new menuItem('contact', 'CONTACT');
+       $this->menu['webshop'] = new menuItem('webshop', '','NikeLogoWhite.png');
+       if ($this->sessionManager->isUserLoggedIn()) {
+            $this->menu['logout'] = new menuItem('logout',"", "logout.svg", 
             $this->sessionManager->getLoggedInUser()['name']);
-            $this->menu['shoppingCart'] = new MenuItem('shoppingCart', 'SHOPPING CART', 'cart.svg');
-            $this->menu['orders'] = new MenuItem('orders', 'ORDERS', 'cartorders.svg');
-            $this->menu['changepassword'] = new MenuItem('changepassword', 'CHANGE PASSWORD', 'lock.svg');
+            $this->menu['shoppingCart'] = new menuItem('shoppingCart', 'SHOPPING CART', 'cart.svg');
+            $this->menu['orders'] = new menuItem('orders', 'ORDERS', 'cartorders.svg');
+            $this->menu['changepassword'] = new menuItem('changepassword', 'CHANGE PASSWORD', 'lock.svg');
         } else {
-            $this->menu['register'] = new MenuItem('register', 'REGISTER');
-            $this->menu['login'] = new MenuItem('login', 'LOGIN');
+            $this->menu['register'] = new menuItem('register', 'REGISTER');
+            $this->menu['login'] = new menuItem('login', 'LOGIN');
         }
     }
 }

@@ -1,10 +1,10 @@
 <?php
 require_once("HtmlDoc.php");
 class Basicdoc extends HtmlDoc{
-    protected $data;
+    protected $model;
 
     public function __construct($myData){
-        $this->data = $myData;
+        $this->model = $myData;
     }
     
     protected function getArrayVar($array, $key, $default='')
@@ -25,7 +25,7 @@ class Basicdoc extends HtmlDoc{
     private function showMenu(){
         echo '<div class="menu">   
         <ul class=>';  
-        foreach($this->data['menu'] as $link => $menuItem) { 
+        foreach($this->model['menu'] as $link => $menuItem) { 
             $this->showMenuItem($link, $menuItem); 
         }
         echo ' 
@@ -48,7 +48,7 @@ class Basicdoc extends HtmlDoc{
 
     private function showPageContent(){
         echo '<section>';
-        echo '<span class="error">'. $this->getArrayVar($this->data, 'genericErr'). '</span>';
+        echo '<span class="error">'. $this->getArrayVar($this->model, 'genericErr'). '</span>';
         $this->showContent(); 
         echo '</section>'; 
     }

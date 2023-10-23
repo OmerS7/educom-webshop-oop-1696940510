@@ -1,5 +1,5 @@
 <?php
-require_once('pagemodel.php')
+require_once('pageModel.php');
 
 class shopModel extends pageModel{
 

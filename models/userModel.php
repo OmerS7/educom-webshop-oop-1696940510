@@ -1,9 +1,9 @@
 <?php
 require_once('pageModel.php');
 
-class userModel extends pageModel{
+class userModel extends pageModel {
 
-    public function __construct($pageModel){
+    public function __construct($pageModel) {
         PARENT::__construct($pageModel);
     }
 
@@ -107,7 +107,7 @@ class userModel extends pageModel{
             'passwordErr' => $this->passwordErr,
             'repeatpasswordErr' => $this->repeatpasswordErr,
             'genericErr' => $this->genericErr
-        )
+        );
     }
 
     function validateLogin() {
