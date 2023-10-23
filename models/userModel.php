@@ -3,8 +3,11 @@ require_once('pageModel.php');
 
 class userModel extends pageModel{
 
+    public function __construct($pageModel){
+        PARENT::__construct($pageModel);
+    }
 
-    function validateContact(){    
+    public function validateContact(){    
         $this->name = $this->email = $this->phone = $this->salutation = $this->communication = $this->comment = "";
         $this->nameErr = $this->emailErr = $this->phoneErr = $this->salutationErr = $this->communicationErr = $this->commentErr = "";
         $valid = false;
@@ -47,19 +50,11 @@ class userModel extends pageModel{
         return array('name' => $this->name, 'nameErr' => $this->nameErr, 'email' => $this->email, 'emailErr' => $this->emailErr, 'phone' => $this->phone, 'phoneErr' => $this->phoneErr, 'salutation' => $this->salutation, 'salutationErr' => $this->salutationErr, 'communication' => $this->communication, 'communicationErr' => $this->communicationErr,'comment' => $this->comment, 'commentErr' => $this->commentErr, 'valid' => $this->valid);
     }
 
-    function testInput() {
-        $this->model = trim($this->model);
-        $this->model = stripslashes($this->model);
-        $this->model = htmlspecialchars($this->model);
-        return $this->model;
-    }
-
     function validateRegister() {
         $this->username = $this->email = $this->password = $this->repeatpassword = ""; 
         $this->usernameErr = $this->emailErr = $this->passwordErr = $this->repeatpasswordErr = $this->genericErr = ""; 
         $this->valid = false; 
     
-   
         if ($_SERVER["REQUEST_METHOD"] == "POST") { 
             $this->username = testInput(getPostVar("name")); 
             if (empty($this->username)) {  
@@ -156,6 +151,7 @@ class userModel extends pageModel{
     }
 
     function authenticateUser(){
+        require_once('db_repostitory.php');
         $this->user = findUserByEmail($this->email);
             if (empty($this->user)){
                 return null;
@@ -166,9 +162,13 @@ class userModel extends pageModel{
         return $this->user;   
     }
 
-    public function doLogoutUser() {
-        session_unset();
-        session_destroy();
+    public function doLoginUser(){
+        $this->sessionManager->doLoginUser($this->name, $this->userId);
+        $this->genericErr="Login succesvol";
+    }
+
+    public function doLogoutUser(){
+        $this->sessionMangerr->doLogoutUser;
     }
 
 }
