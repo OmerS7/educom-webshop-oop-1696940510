@@ -12,7 +12,7 @@ class pageController{
 
     public function handleRequest(){
         $this->getRequest();
-        $this->procesRequest();
+        $this->processRequest();
         $this-showResponse();
     }
 
@@ -92,7 +92,7 @@ class pageController{
         }  
     }
 
-    private function showResponce(){
+    private function showResponse(){
        $this->model->createMenu();
 
        switch($this->model->page){
