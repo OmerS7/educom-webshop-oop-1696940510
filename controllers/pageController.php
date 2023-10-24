@@ -24,33 +24,34 @@ class pageController{
         switch($this->model->page){
             case "login":
                 require_once('login.php');
-                $this->model = validateLogin();
+                $this->model->validateLogin();
                 if ($this->valid){
-                    this->model->doLoginUser();
+                    $this->model->doLoginUser();
                     $this->model->page = "home";
                 }
                 break;   
             case "contact":
+                $this->model = new userModel($this->model);
                 require_once('contact.php');
-                $this->model = validateContact();
-                if($this->model['valid']){
+                $this->model->validateContact();
+                if($this->model->valid){
                     $this->model->doStoreContact();
-                    if ($this->model['succes']) {
+                    if ($this->model->succes) {
                         $this->model->page = "thanks";
                     }
                 }    
                 break;      
             case "logout":
                 require_once('logout.php');
-                doLogoutUser();
+                $this->model->doLogoutUser();
                 $this->model->page = "home";
                 break;
             case "changepassword":
                 require_once('passwordC.php');
-                $this->model = validatePassword();
-                if ($this->model['valid']){
+                $this->model->validatePassword();
+                if ($this->model->valid){
                     $this->model = doChangePassword($this->model);
-                    if ($this->model['succes']) {
+                    if ($this->model->succes) {
                         $this->model->page = "login";
                         $this->model['emailErr'] = "";
                         $this->model['password'] = "";
@@ -59,35 +60,36 @@ class pageController{
                 break;
             case "register":
                 require_once('register.php');
-                $this->model = validateRegister();
-                if($this-model['valid']){
+                $this->model->validateRegister();
+                if($this->model->valid){
                     $this->model = doRegisterUser($this->model);
-                    if ($this->model['succes']){
+                    if ($this->model->succes){
                         $this->model->page = "home";
                     }
                 }
                 break;
             case "webshop":
+                $this->model = new shopModel($this->model);
                 require_once('webshop.php');
-                handleAction();
-                $this->model = doRetreiveProducts();
+                $this->model->handleAction();
+                $this->model->doRetreiveProducts();
                 break;
             case "detail":
                 require_once('productDetail.php');
-                $this->model = doRetreiveProductId();
+                $this->model->doRetreiveProductId();
                 break;
             case "shoppingCart":
                 require_once('webshop.php');
-                $this->model = handleAction();
-                $this->model = array_merge($this->model,doRetreiveShoppingCart());
+                $this->model->handleAction();
+                $this->model->doRetreiveShoppingCart();
                 break;
             case "orders":
                 require_once('orders.php');
-                $this->model = doRetreiveOrders();
+                $this->model->doRetreiveOrders();
                 break;
             case "orderDetail":
                 require_once('orderDetail.php');
-                $this->model = doRetreiveOrderId();
+                $this->model->doRetreiveOrderId();
                 break;
         }  
     }
