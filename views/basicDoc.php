@@ -7,10 +7,10 @@ class Basicdoc extends HtmlDoc{
         $this->model = $myData;
     }
     
-    protected function getArrayVar($array, $key, $default='')
-    {
-        return isset ($array[$key]) ? $array[$key] : $default;
-    }
+    // protected function getArrayVar($array, $key, $default='')
+    // {
+    //     return isset ($array[$key]) ? $array[$key] : $default;
+    // }
 
     protected function showHeader() { 
         echo "Basic";
@@ -25,22 +25,24 @@ class Basicdoc extends HtmlDoc{
     private function showMenu(){
         echo '<div class="menu">   
         <ul class=>';  
-        foreach($this->model->menu as $link => $menuItem) { 
-            $this->showMenuItem($link, $menuItem); 
+        foreach($this->model->menu as $menuItem) { 
+            $this->showMenuItem($menuItem); 
         }
         echo ' 
         </ul>   
     </div>' . PHP_EOL;
     }
 
-    private function showMenuItem($page, $menuItem){
-        echo '<li class="menuItem"><a href="index.php?page=' . $page . '">';
-        $array = (array) $menuItem;
-        var_dump($array);
-        if(count($array)>1){
-            echo"<img src=\"Images/$array[1]\">";
+    private function showMenuItem($menuItem){
+        echo '<li class="menuItem"><a href="index.php?page=' . $menuItem->name . '">';
+        if(!empty($menuItem->icon)){
+            echo"<img src=\"Images/$menuItem->icon\">";
+        } else {
+            echo $menuItem->label;
         }
-        echo $array[0];
+        if(!empty($menuItem->userName)){
+            echo  "&nbsp;". $menuItem->userName;
+        }
         echo '</a></li>';
     }
 
@@ -50,7 +52,7 @@ class Basicdoc extends HtmlDoc{
 
     private function showPageContent(){
         echo '<section>';
-        echo '<span class="error">'. $this->getArrayVar($this->model, 'genericErr'). '</span>';
+        echo '<span class="error">'. /*$this->getArrayVar($this->model, 'genericErr').*/ '</span>';
         $this->showContent(); 
         echo '</section>'; 
     }
