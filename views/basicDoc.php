@@ -25,7 +25,7 @@ class Basicdoc extends HtmlDoc{
     private function showMenu(){
         echo '<div class="menu">   
         <ul class=>';  
-        foreach($this->model['menu'] as $link => $menuItem) { 
+        foreach($this->model->menu as $link => $menuItem) { 
             $this->showMenuItem($link, $menuItem); 
         }
         echo ' 
@@ -35,10 +35,12 @@ class Basicdoc extends HtmlDoc{
 
     private function showMenuItem($page, $menuItem){
         echo '<li class="menuItem"><a href="index.php?page=' . $page . '">';
-        if(count($menuItem)>1){
-            echo"<img src=\"Images/$menuItem[1]\">";
+        $array = (array) $menuItem;
+        var_dump($array);
+        if(count($array)>1){
+            echo"<img src=\"Images/$array[1]\">";
         }
-        echo $menuItem[0];
+        echo $array[0];
         echo '</a></li>';
     }
 

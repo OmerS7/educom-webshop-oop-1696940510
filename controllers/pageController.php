@@ -26,7 +26,7 @@ class pageController{
                 require_once('login.php');
                 $this->model = validateLogin();
                 if ($this->valid){
-                    doLoginUser($this->model['username'], $this->model['userId']);
+                    this->model->doLoginUser();
                     $this->model->page = "home";
                 }
                 break;   
@@ -34,7 +34,7 @@ class pageController{
                 require_once('contact.php');
                 $this->model = validateContact();
                 if($this->model['valid']){
-                    $this->model = doStoreContact($this->model);
+                    $this->model->doStoreContact();
                     if ($this->model['succes']) {
                         $this->model->page = "thanks";
                     }
@@ -91,6 +91,7 @@ class pageController{
                 break;
         }  
     }
+
 
     private function showResponse(){
        $this->model->createMenu();
