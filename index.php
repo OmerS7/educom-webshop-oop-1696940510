@@ -153,20 +153,20 @@ function doChangePassword($data){
     return $data;
 }
 
-function doRetreiveProducts(){
-    $data = array();
-    $data['succes'] = false;
-    try{
-        require_once 'productService.php';
-        $data['products'] = getProducts();
-        $data['succes'] = true;
-    }
-    catch(Exception $e){
-        $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
-        logerror("Product retreiving failed: " . $e -> getMessage());
-    }
-    return $data;
-}
+// function doRetreiveProducts(){
+//     $data = array();
+//     $data['succes'] = false;
+//     try{
+//         require_once 'productService.php';
+//         $data['products'] = getProducts();
+//         $data['succes'] = true;
+//     }
+//     catch(Exception $e){
+//         $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
+//         logerror("Product retreiving failed: " . $e -> getMessage());
+//     }
+//     return $data;
+// }
 
 // function doRetreiveProductId(){
 //     $data = array();
@@ -211,21 +211,21 @@ function doRetreiveProducts(){
 //     return $data;
 // }
 
-function doRetreiveOrders(){
-    $data = array();
-    $data['succes'] = false;
-    try{
-        require_once 'productService.php';
-        $userId = getLoggedInUserId();
-        $data['orders'] = getOrders($userId);
-        $data['succes'] = true;
-    }
-    catch(Exception $e){
-        $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
-        logerror("Order retreiving failed: " . $e -> getMessage());
-    }
-    return $data;
-}
+// function doRetreiveOrders(){
+//     $data = array();
+//     $data['succes'] = false;
+//     try{
+//         require_once 'productService.php';
+//         $userId = getLoggedInUserId();
+//         $data['orders'] = getOrders($userId);
+//         $data['succes'] = true;
+//     }
+//     catch(Exception $e){
+//         $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
+//         logerror("Order retreiving failed: " . $e -> getMessage());
+//     }
+//     return $data;
+// }
 
 function doRetreiveOrderId(){
     $data = array();

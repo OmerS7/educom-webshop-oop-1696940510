@@ -48,10 +48,11 @@ class pageController{
                 $this->model->page = "home";
                 break;
             case "changepassword":
+                $this->model = new userModel($this->model);
                 require_once('passwordC.php');
                 $this->model->validatePassword();
                 if ($this->model->valid){
-                    $this->model = doChangePassword($this->model);
+                    $this->model->doChangePassword();
                     if ($this->model->succes) {
                         $this->model->page = "login";
                         $this->model['emailErr'] = "";
@@ -77,19 +78,23 @@ class pageController{
                 $this->model->doRetreiveProducts();
                 break;
             case "detail":
+                $this->model = new shopModel($this->model);
                 require_once('productDetail.php');
                 $this->model->doRetreiveProductId();
                 break;
             case "shoppingCart":
+                $this->model = new shopModel($this->model);
                 require_once('webshop.php');
                 $this->model->handleAction();
                 $this->model->doRetreiveShoppingCart();
                 break;
             case "orders":
+                $this->model = new shopModel($this->model);
                 require_once('orders.php');
                 $this->model->doRetreiveOrders();
                 break;
             case "orderDetail":
+                $this->model = new shopModel($this->model);
                 require_once('orderDetail.php');
                 $this->model->doRetreiveOrderId();
                 break;

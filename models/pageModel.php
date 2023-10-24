@@ -2,7 +2,6 @@
 
 require_once("models/sessionManager.php");
 require_once("models/menuItem.php");
-require_once("utils.php");
 
 class pageModel {
  
@@ -32,9 +31,9 @@ class pageModel {
       $this->isPost = ($_SERVER['REQUEST_METHOD'] == 'POST');
 
       if ($this->isPost) {
-          $this->setPage($this->getPostVar("page", "home"));
+          $this->setPage($this->getSavePostVar("page", "home"));
       } else {
-          $this->setPage($this->getUrlVar("page", "home"));
+          $this->setPage($this->getSaveUrlVar("page", "home"));
       }
    }
   
@@ -46,12 +45,23 @@ class pageModel {
         return isset ($array[$key]) ? $array[$key] : $default;
     }
 
-    protected function getPostVar($key, $default = '') {
-        return $this->getArrayVar($_POST, $key, $default);
+    protected function getSavePostVar($key, $default = '') {
+        return $this->testInput($this->getArrayVar($_POST, $key, $default));
     }
           
-    protected function getUrlVar($key,$default='') {
-        return $this->getArrayVar($_GET, $key, $default);
+    protected function getSaveUrlVar($key,$default='') {
+        return $this->testInput($this->getArrayVar($_GET, $key, $default));
+    }
+
+    function testInput($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    function logError($message) {
+        echo "LOGGING TO THE SERVER: ". $message;
     }
   
    public function createMenu() {

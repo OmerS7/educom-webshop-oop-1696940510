@@ -2,6 +2,7 @@
 require_once('pageModel.php');
 
 class userModel extends pageModel {
+    //contactpage
     public $name = "";
     public $username= "";
     public $usernameErr= "";
@@ -21,6 +22,7 @@ class userModel extends pageModel {
     public $communicationErr = "";
     public $commentErr = "";
     public $genericErr = "";
+    public $userId= 0;
     public $valid = false;
     public $success = false;
 
@@ -30,36 +32,36 @@ class userModel extends pageModel {
 
     public function validateContact(){    
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $this->name = testInput(getPostVar("name"));
+            $this->name = $this->getSavePostVar("name");
+           
             if (empty($this->name)) { 
                 $this->nameErr = "Voer een naam in"; 
             } 
     
-            $this->email = testInput(getPostVar("email"));
+            $this->email = $this->getSavePostVar("email");
             if (empty($this->email)) { 
                 $this->emailErr = "Voer een emailadres in"; 
             } 
     
-            $this->phone = testInput(getPostVar("phone"));
+            $this->phone = $this->getSavePostVar("phone");
             if (empty($this->phone)) {
                 $this->phoneErr = "Voer een telefoonnummer in";
             }
     
-            $this->salutation = testInput(getPostVar("salutation"));
+            $this->salutation = $this->getSavePostVar("salutation");
             if (empty($this->salutation)) {
                 $this->salutationErr = "Aanhef verplicht";
             }
     
-            $this->communication = testInput(getPostVar("communication"));
+            $this->communication = $this->getSavePostVar("communication");
             if (empty($this->communication)) {
                 $this->communicationErr = "Communicatie voorkeur is verplicht";
             }
     
-            $this->comment = testInput(getPostVar("comment"));
+            $this->comment = $this->getSavePostVar("comment");
             if (empty($this->comment)) {
                 $this->commentErr = "Plaats een opmerking";
             }
-    
             if (empty($this->nameErr) && empty($this->emailErr) && empty($this->phoneErr) && empty($this->salutationErr) && empty($this->communicationErr) && empty($this->commentErr)) {
                 $this->valid =true;
             }
@@ -69,22 +71,22 @@ class userModel extends pageModel {
     function validateRegister() {
        
         if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-            $this->username = testInput(getPostVar("name")); 
+            $this->username = $this->getSavePostVar("name"); 
             if (empty($this->username)) {  
                 $this->usernameErr = "Voer een naam in";  
             }  
         
-            $this->email = testInput(getPostVar("email")); 
+            $this->email = $this->getSavePostVar("email"); 
             if (empty($this->email)) {  
                 $this->emailErr = "Voer een emailadres in";  
             }  
         
-            $this->password = testInput(getPostVar("password")); 
+            $this->password = $this->getSavePostVar("password"); 
             if (empty($this->password)) {  
                 $this->passwordErr = "Voer geldig wachtwoord in";  
             }  
         
-            $this->repeatpassword = testInput(getPostVar("repeatpassword")); 
+            $this->repeatpassword = $this->getSavePostVar("repeatpassword"); 
             if (empty($this->repeatpassword)) {  
                 $this->repeatpasswordErr = "Herhaal het wachtwoord";  
             }  
@@ -109,34 +111,15 @@ class userModel extends pageModel {
             }
         }
 
-        // return array(
-        //     'valid' => $this->valid,
-        //     'username' => $this->username,
-        //     'email' => $this->email,
-        //     'password' => $this->password,
-        //     'repeatpassword' => $this->repeatpassword,
-        //     'usernameErr' => $this->usernameErr,
-        //     'emailErr' => $this->emailErr,
-        //     'passwordErr' => $this->passwordErr,
-        //     'repeatpasswordErr' => $this->repeatpasswordErr,
-        //     'genericErr' => $this->genericErr
-        // );
     }
 
     function validateLogin() {
-        $this->email = $this->password = "";
-        $this->emailErr = $this->passwordErr = "";
-        $this->username = "";
-        $this->userId = 0;
-        $this->genericErr= "";
-        $this->valid = false;
-    
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $this->email = testInput(getPostVar("email"));
+            $this->email = $this->getSavePostVar("email");
                 if (empty($this->email)) { 
                     $this->emailErr = "Voer een emailadres in"; 
                 }
-            $this->password = testInput(getPostVar("password"));
+            $this->password = $this->getSavePostVar("password");
                 if (empty($this->password)) { 
                     $this->passwordErr = "Voer geldig wachtwoord in"; 
                 } 
@@ -159,8 +142,46 @@ class userModel extends pageModel {
                 
             } 
         }   
-        return array('email' => $this->email, 'emailErr' => $this->emailErr, 'password' => $this->password, 
-                     'passwordErr' => $this->passwordErr, 'valid' => $this->valid, 'username' => $this->username, 'genericErr' => $this->genericErr, 'userId' => $this->userId); 
+    }
+
+    function validatePassword() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+            $password = $this->getSavePostVar("password"); 
+            if (empty($password)) {  
+                $passwordErr = "Voer je huidige wachtwoord in";  
+            }
+
+            $changepassword = $this->getSavePostVar("changepassword");
+            if (empty($changepassword)){
+                $changepasswordErr = "Voer een nieuw wachtwoord in";
+            }
+
+            $repeatchangepassword = $this->getSavePostVar("repeatchangepassword");
+            if (empty($repeatchangepassword)){
+                $repeatchangepasswordErr = "Herhaal het nieuwe wachtwoord";
+            }
+
+            if($changepassword !== $repeatchangepassword){
+                $repeatchangepasswordErr = "Herhaal wachtwoord komt niet overeen";
+            }
+            
+            if (empty($passwordErr) && empty($changepasswordErr) && empty($repeatchangepasswordErr)) {
+                try{
+                    $userId = getLoggedInUserId();   
+                    $userpassword = authenticateUserPassword($userId,$password); 
+                    if (empty($userpassword)) {
+                        $passwordErr = "Wachtwoord is ongeldig";
+                    } else {
+                        $valid = true;
+                        $email = $userpassword['email'];
+                    }
+                }
+                catch(Exception $e){
+                    $this->genericErr = "Er is een technische storing. Probeer het later nog eens";
+                    logerror("changepassword failed: " . $e -> getMessage());
+                }
+            }
+        }
     }
 
     function authenticateUser(){
@@ -181,7 +202,7 @@ class userModel extends pageModel {
     }
 
     public function doLogoutUser(){
-        $this->sessionMangerr->doLogoutUser;
+        $this->sessionManager->doLogoutUser;
     }
 
 }
