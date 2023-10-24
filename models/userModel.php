@@ -2,16 +2,26 @@
 require_once('pageModel.php');
 
 class userModel extends pageModel {
+    public $name = "";
+    public $email = "";
+    public $phone = "";
+    public $salutation = "";
+    public $communication = "";
+    public $comment = "";
+    public $nameErr = "";
+    public $emailErr = "";
+    public $phoneErr = "";
+    public $salutationErr = "";
+    public $communicationErr = "";
+    public $commentErr = "";
+    public $valid = false;
+    public $success = false;
 
     public function __construct($pageModel) {
         PARENT::__construct($pageModel);
     }
 
     public function validateContact(){    
-        $this->name = $this->email = $this->phone = $this->salutation = $this->communication = $this->comment = "";
-        $this->nameErr = $this->emailErr = $this->phoneErr = $this->salutationErr = $this->communicationErr = $this->commentErr = "";
-        $valid = false;
-    
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->name = testInput(getPostVar("name"));
             if (empty($this->name)) { 
@@ -44,10 +54,9 @@ class userModel extends pageModel {
             }
     
             if (empty($this->nameErr) && empty($this->emailErr) && empty($this->phoneErr) && empty($this->salutationErr) && empty($this->communicationErr) && empty($this->commentErr)) {
-                $valid =true;
+                $this->valid =true;
             }
         }
-        return array('name' => $this->name, 'nameErr' => $this->nameErr, 'email' => $this->email, 'emailErr' => $this->emailErr, 'phone' => $this->phone, 'phoneErr' => $this->phoneErr, 'salutation' => $this->salutation, 'salutationErr' => $this->salutationErr, 'communication' => $this->communication, 'communicationErr' => $this->communicationErr,'comment' => $this->comment, 'commentErr' => $this->commentErr, 'valid' => $this->valid);
     }
 
     function validateRegister() {
