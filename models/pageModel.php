@@ -60,11 +60,11 @@ class pageModel {
        $this->menu['contact'] = new menuItem('contact', 'CONTACT');
        $this->menu['webshop'] = new menuItem('webshop', '','NikeLogoWhite.png');
        if ($this->sessionManager->isUserLoggedIn()) {
-            $this->menu['logout'] = new menuItem('logout',"", "logout.svg",
-            $this->sessionManager->getLoggedInUser());
             $this->menu['shoppingCart'] = new menuItem('shoppingCart', 'SHOPPING CART', 'cart.svg');
             $this->menu['orders'] = new menuItem('orders', 'ORDERS', 'cartorders.svg');
             $this->menu['changepassword'] = new menuItem('changepassword', 'CHANGE PASSWORD', 'lock.svg');
+            $this->menu['logout'] = new menuItem('logout',"", "logout.svg",
+            $this->sessionManager->getLoggedInUser());
         } else {
             $this->menu['register'] = new menuItem('register', 'REGISTER');
             $this->menu['login'] = new menuItem('login', 'LOGIN');
