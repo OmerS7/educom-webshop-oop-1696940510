@@ -23,9 +23,10 @@ class pageController{
     private function processRequest(){
         switch($this->model->page){
             case "login":
+                $this->model = new userModel($this->model);
                 require_once('login.php');
                 $this->model->validateLogin();
-                if ($this->valid){
+                if ($this->model->valid){
                     $this->model->doLoginUser();
                     $this->model->page = "home";
                 }
@@ -59,6 +60,7 @@ class pageController{
                 }    
                 break;
             case "register":
+                $this->model = new userModel($this->model);
                 require_once('register.php');
                 $this->model->validateRegister();
                 if($this->model->valid){
