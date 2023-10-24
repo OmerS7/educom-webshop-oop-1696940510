@@ -155,7 +155,8 @@ class pageController{
             showHomeContent();
             break;   
         default:
-            showPageNotFound();
+            require_once('views/pageNotFoundDoc.php');
+            $view = new pageNotFoundDoc($this->model);
             break;
         }   
         $view -> show();
