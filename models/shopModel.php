@@ -2,15 +2,15 @@
 require_once('pageModel.php');
 
 class shopModel extends pageModel{
+    public $id = -1;
 
-   public function handleAction(){
-        $this->model = array();
-        $this->action = getPostVar("action");
-            switch($this->action){
+    public function handleAction(){
+        $action = $this->getPostVar("action");
+            switch($action){
                 case 'addToCart':
                     $this->id= getPostVar('productId');
                     $this->page = getPostVar('page');
-                    addToCart($this->id);
+                    $this->sessionManager->addToCart($this->id);
                     break;
                 case 'updateCart':
                     $this->id= getPostVar('productId');
@@ -24,7 +24,7 @@ class shopModel extends pageModel{
                 case 'checkOutCart':
                     $this->id= getLoggedInUserId();
                     checkOutCart($this->id);
-                    $this->model['genericErr'] = "Uw bestelling is succesvol afgehandeld! <br> Voor een volledig overzicht van jouw bestelling, klik op de icon 'Overzicht bestellingen' in de menubalk.";
+                    $this->genericErr = "Uw bestelling is succesvol afgehandeld! <br> Voor een volledig overzicht van jouw bestelling, klik op de icon 'Overzicht bestellingen' in de menubalk.";
                     break;
             }
         return $this->model;
