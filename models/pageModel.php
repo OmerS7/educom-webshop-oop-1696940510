@@ -2,7 +2,7 @@
 
 require_once("models/sessionManager.php");
 require_once("models/menuItem.php");
-
+require_once("utils.php");
 
 class pageModel {
  
