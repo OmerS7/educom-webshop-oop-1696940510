@@ -445,11 +445,11 @@ function doRetreiveOrderId(){
 //         $view -> show();
 // }
 
-function showPageNotFound(){
-    echo '<div class="content">
-    <p>PAGE NOT FOUND</p>
-    </div>';
-}
+// function showPageNotFound(){
+//     echo '<div class="content">
+//     <p>PAGE NOT FOUND</p>
+//     </div>';
+// }
 
 // function showFooter()
 // {
