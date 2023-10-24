@@ -3,32 +3,32 @@ require_once("sessionManager.php");
 require_once("utils.php");
 
 
-function handleAction(){
-    $data = array();
-    $action = getPostVar("action");
-        switch($action){
-            case 'addToCart':
-                $id= getPostVar('productId');
-                $page = getPostVar('page');
-                addToCart($id);
-                break;
-            case 'updateCart':
-                $id= getPostVar('productId');
-                $amount = getPostVar('amount');
-                updateCart($id, $amount);
-                break;
-            case 'deleteFromCart':
-                $id= getPostVar('productId');
-                deleteFromCart($id);
-                break;
-            case 'checkOutCart':
-                $id= getLoggedInUserId();
-                checkOutCart($id);
-                $data['genericErr'] = "Uw bestelling is succesvol afgehandeld! <br> Voor een volledig overzicht van jouw bestelling, klik op de icon 'Overzicht bestellingen' in de menubalk.";
-                break;
-        }
-    return $data;
-}
+// function handleAction(){
+//     $data = array();
+//     $action = getPostVar("action");
+//         switch($action){
+//             case 'addToCart':
+//                 $id= getPostVar('productId');
+//                 $page = getPostVar('page');
+//                 addToCart($id);
+//                 break;
+//             case 'updateCart':
+//                 $id= getPostVar('productId');
+//                 $amount = getPostVar('amount');
+//                 updateCart($id, $amount);
+//                 break;
+//             case 'deleteFromCart':
+//                 $id= getPostVar('productId');
+//                 deleteFromCart($id);
+//                 break;
+//             case 'checkOutCart':
+//                 $id= getLoggedInUserId();
+//                 checkOutCart($id);
+//                 $data['genericErr'] = "Uw bestelling is succesvol afgehandeld! <br> Voor een volledig overzicht van jouw bestelling, klik op de icon 'Overzicht bestellingen' in de menubalk.";
+//                 break;
+//         }
+//     return $data;
+// }
 
 
 function showWebshopHeader(){
