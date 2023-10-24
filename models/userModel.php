@@ -3,6 +3,12 @@ require_once('pageModel.php');
 
 class userModel extends pageModel {
     public $name = "";
+    public $username= "";
+    public $usernameErr= "";
+    public $password= "";
+    public $passwordErr= "";
+    public $repeatpassword= "";
+    public $repeatpasswordErr= "";
     public $email = "";
     public $phone = "";
     public $salutation = "";
@@ -14,6 +20,7 @@ class userModel extends pageModel {
     public $salutationErr = "";
     public $communicationErr = "";
     public $commentErr = "";
+    public $genericErr = "";
     public $valid = false;
     public $success = false;
 
@@ -60,10 +67,7 @@ class userModel extends pageModel {
     }
 
     function validateRegister() {
-        $this->username = $this->email = $this->password = $this->repeatpassword = ""; 
-        $this->usernameErr = $this->emailErr = $this->passwordErr = $this->repeatpasswordErr = $this->genericErr = ""; 
-        $this->valid = false; 
-    
+       
         if ($_SERVER["REQUEST_METHOD"] == "POST") { 
             $this->username = testInput(getPostVar("name")); 
             if (empty($this->username)) {  
@@ -105,18 +109,18 @@ class userModel extends pageModel {
             }
         }
 
-        return array(
-            'valid' => $this->valid,
-            'username' => $this->username,
-            'email' => $this->email,
-            'password' => $this->password,
-            'repeatpassword' => $this->repeatpassword,
-            'usernameErr' => $this->usernameErr,
-            'emailErr' => $this->emailErr,
-            'passwordErr' => $this->passwordErr,
-            'repeatpasswordErr' => $this->repeatpasswordErr,
-            'genericErr' => $this->genericErr
-        );
+        // return array(
+        //     'valid' => $this->valid,
+        //     'username' => $this->username,
+        //     'email' => $this->email,
+        //     'password' => $this->password,
+        //     'repeatpassword' => $this->repeatpassword,
+        //     'usernameErr' => $this->usernameErr,
+        //     'emailErr' => $this->emailErr,
+        //     'passwordErr' => $this->passwordErr,
+        //     'repeatpasswordErr' => $this->repeatpasswordErr,
+        //     'genericErr' => $this->genericErr
+        // );
     }
 
     function validateLogin() {
