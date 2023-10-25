@@ -1,7 +1,7 @@
 <?php
 require_once('productDoc.php');
 class ordersDoc extends productDoc{
-
+    public $orders ="";
     public $products ="";
     public $succes = true;
 
@@ -13,7 +13,7 @@ class ordersDoc extends productDoc{
     echo '<table>';
 
             if (isset($this->succes) && $this->succes) {
-                $orders = $this->model->orders;
+                $orders = $this->orders;
 
                 if (!empty($orders)) {
                 foreach ($orders as $order) {
