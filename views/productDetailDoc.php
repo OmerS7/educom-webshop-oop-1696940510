@@ -9,6 +9,11 @@ class productDetailDoc extends basicDoc{
 
     protected function showContent() {
         $product = $this->model->product ?? NULL;
+        /*if (isset($this->model->product)) {
+            $product = $this->model->product;
+        } else {
+            $product = NULL;
+        }*/
         
         if ($product) {
             echo '<div class="shoesize">';
