@@ -199,10 +199,17 @@ class userModel extends pageModel {
     }
 
     function doStoreContact() {
+       // require_once('user_service.php');
         try{
-            storeContact($this->model->name, $this->model->phone, $this->model->email, 
-            $this->model->salutation, $$this->model->communication, $this->model->comment);
-            $this->model->succes = true;
+            storeContact(
+                $this->name, 
+                $this->phone, 
+                $this->email, 
+                $this->salutation, 
+                $this->communication, 
+                $this->comment
+            );
+            $this->succes = true;
         }
         catch(Exception $e){
             $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
