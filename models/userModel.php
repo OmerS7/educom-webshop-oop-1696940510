@@ -38,7 +38,6 @@ class userModel extends pageModel {
             $this->name = $this->getSavePostVar("name");
             if (empty($this->name)) { 
                $this->nameErr = "Voer een naam in"; 
-                var_dump($this->nameErr);
             } 
     
             $this->email = $this->getSavePostVar("email");
