@@ -13,6 +13,14 @@ class shopModel extends pageModel{
     public $orders ="";
     public $success = false;
 
+    public function setSuccessMessage($message) {
+        $this->successMessage = $message;
+    }
+
+    public function getSuccessMessage() {
+        return $this->successMessage;
+    }
+
     public function handleAction(){
         $action = $this->getSavePostVar("action");
             switch($action){
@@ -33,29 +41,13 @@ class shopModel extends pageModel{
                 case 'checkOutCart':
                     $id= $this->getLoggedInUserId();
                     $this->sessionManager->checkOutCart($id);
-                    $this->genericErr = "Uw bestelling is succesvol afgehandeld! <br> Voor een volledig overzicht van jouw bestelling, klik op de icon 'Overzicht bestellingen' in de menubalk.";
-                    var_dump($this->genericErr);
+                    $this->succes= true;
                     break;
             }
     }
 
-    function doRetreiveProductId(){
-        $this->model = array();
-        $data['succes'] = false;
-        try{
-            require_once ('productService.php');
-            $this->productId = $this->getSaveUrlVar($this->id);
-            $this->products = $this->getProducts($this->productId);
-            $this->succes = true;
-        }
-        catch(Exception $e){
-            $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
-            logerror("Product retreiving failed: " . $e -> getMessage());
-        }
-    }
 
     public function doRetreiveProducts(){
-       $this->model = array();
         try{
             require_once 'productService.php';
             $this->products = getProducts();
@@ -67,26 +59,25 @@ class shopModel extends pageModel{
         }
     }
 
-    function doRetreiveOrders(){
+    public function doRetreiveProductId(){
         try{
-            require_once 'productService.php';
-            $userId = getLoggedInUserId();
-            $this->orders = getOrders($userId);
+            require_once ('productService.php');
+            $productId = $this->getSaveUrlVar('id');
+            $this->product = getProduct($productId);
             $this->succes = true;
         }
         catch(Exception $e){
             $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
-            $this->logerror("Order retreiving failed: " . $e -> getMessage());
+            logerror("Product retreiving failed: " . $e -> getMessage());
         }
     }
 
-    function doRetreiveShoppingCart(){
+    public function doRetreiveShoppingCart(){
         try{
             require_once 'productService.php';
             $this->products = getProducts();
             $cart = $this->sessionManager->getCart();
             $this->totalPrice = 0;
-            var_dump($cart);
             foreach($cart as $productId => $amount){
                 if (!array_key_exists($productId, $this->products)) {
                     continue;
@@ -111,6 +102,19 @@ class shopModel extends pageModel{
         catch(Exception $e){
             $this->model['genericErr']="Er is een technische storing. Probeer het later nog eens.";
             logerror("Product retreiving failed: " . $e -> getMessage());
+        }
+    }
+
+    public function doRetreiveOrders(){
+        try{
+            require_once 'productService.php';
+            $userId = getLoggedInUserId();
+            $this->orders = getOrders($userId);
+            $this->succes = true;
+        }
+        catch(Exception $e){
+            $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
+            $this->logerror("Order retreiving failed: " . $e -> getMessage());
         }
     }
 }
