@@ -1,6 +1,6 @@
 <?php
-require_once('basicDoc.php');
-class productDetailDoc extends basicDoc{
+require_once('productDoc.php');
+class productDetailDoc extends productDoc{
     public $product= "";
 
     protected function showHeader(){
@@ -22,12 +22,13 @@ class productDetailDoc extends basicDoc{
             echo "<img src='Images/{$product['productimage']}' alt='{$product['productname']}'>";
             echo "<p>{$product['description']}</p>";
             echo "</div>";
-            echo '<form method="POST" action="index.php">          
-                <input type="hidden" name="action" value="addToCart">
-                <input type="hidden" name="productId" value="'.$product["productId"].'">
-                <input type="hidden" name="page" value="webshop">
-                <input type="submit" value="Toevoegen">
-            </form>';
+            $this->showActionForm("addToCart","webshop",$product["productId"], NULL, "Toevoegen");
+            // echo '<form method="POST" action="index.php">          
+            //     <input type="hidden" name="action" value="addToCart">
+            //     <input type="hidden" name="productId" value="'.$product["productId"].'">
+            //     <input type="hidden" name="page" value="webshop">
+            //     <input type="submit" value="Toevoegen">
+            echo '</form>';
         } else {
             echo "Product niet gevonden.";
         }

@@ -36,8 +36,8 @@ class pageController{
                 require_once('views/contactDoc.php');
                 $this->model->validateContact();
                 if($this->model->valid){
+                    $this->model->doStoreContact();
                     if ($this->model->succes) {
-                        $this->model->doStoreContact();
                         $this->model->page = "thanks";
                     }
                 }    
@@ -55,8 +55,8 @@ class pageController{
                     $this->model->doChangePassword();
                     if ($this->model->succes) {
                         $this->model->page = "login";
-                        $this->model['emailErr'] = "";
-                        $this->model['password'] = "";
+                        $this->model->emailErr = "";
+                        $this->model->password = "";
                     }
                 }    
                 break;

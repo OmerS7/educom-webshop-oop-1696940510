@@ -55,7 +55,7 @@ class shopModel extends pageModel{
         }
         catch(Exception $e){
             $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
-            logerror("Product retreiving failed: " . $e -> getMessage());
+            $this->logerror("Product retreiving failed: " . $e -> getMessage());
         }
     }
 
@@ -68,7 +68,7 @@ class shopModel extends pageModel{
         }
         catch(Exception $e){
             $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
-            logerror("Product retreiving failed: " . $e -> getMessage());
+            $this->logerror("Product retreiving failed: " . $e -> getMessage());
         }
     }
 
@@ -101,7 +101,7 @@ class shopModel extends pageModel{
         }
         catch(Exception $e){
             $this->model['genericErr']="Er is een technische storing. Probeer het later nog eens.";
-            logerror("Product retreiving failed: " . $e -> getMessage());
+            $this->logerror("Product retreiving failed: " . $e -> getMessage());
         }
     }
 
@@ -114,7 +114,7 @@ class shopModel extends pageModel{
         }
         catch(Exception $e){
             $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
-            $this->logerror("Order retreiving failed: " . $e -> getMessage());
+            $this->$this->logerror("Order retreiving failed: " . $e -> getMessage());
         }
     }
 }

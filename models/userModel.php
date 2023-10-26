@@ -10,7 +10,9 @@ class userModel extends pageModel {
     public $passwordErr= "";
     public $repeatpassword= "";
     public $repeatpasswordErr= "";
+    public $changepassword = "";
     public $changepasswordErr = "";
+    public $repeatchangepassword = "";
     public $repeatchangepasswordErr = "";
     public $email = "";
     public $phone = "";
@@ -108,7 +110,7 @@ class userModel extends pageModel {
                 }
                 catch(Exception $e){
                     $this->genericErr = "Er is een technische storing. Probeer het later nog eens";
-                    logerror("register failed: " . $e -> getMessage());
+                    $this->logerror("register failed: " . $e -> getMessage());
                 }
             }
         }
@@ -139,7 +141,7 @@ class userModel extends pageModel {
                 }
                 catch(Exception $e){
                     $this->genericErr = "Er is een technische storing. Probeer het later nog eens";
-                    logerror("logIn failed: " . $e -> getMessage());
+                    $this->logerror("logIn failed: " . $e -> getMessage());
                 }
                 
             } 
@@ -170,7 +172,7 @@ class userModel extends pageModel {
             if (empty($this->passwordErr) && empty($this->changepasswordErr) && empty($this->repeatchangepasswordErr)) {
                 try{
                     $userId = getLoggedInUserId();   
-                    $userpassword = authenticateUserPassword($userId,$password); 
+                    $userpassword = authenticateUserPassword($userId,$this->password); 
                     if (empty($userpassword)) {
                         $passwordErr = "Wachtwoord is ongeldig";
                     } else {
@@ -180,7 +182,7 @@ class userModel extends pageModel {
                 }
                 catch(Exception $e){
                     $this->genericErr = "Er is een technische storing. Probeer het later nog eens";
-                    logerror("changepassword failed: " . $e -> getMessage());
+                    $this->logerror("changepassword failed: " . $e -> getMessage());
                 }
             }
         }
@@ -199,9 +201,9 @@ class userModel extends pageModel {
     }
 
     function doStoreContact() {
-       // require_once('user_service.php');
+        require_once('user_service.php');
         try{
-            storeContact(
+            saveContact(
                 $this->name, 
                 $this->phone, 
                 $this->email, 
@@ -213,21 +215,24 @@ class userModel extends pageModel {
         }
         catch(Exception $e){
             $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
-            logerror("registration failed: " . $e -> getMessage());
+            $this->logerror("registration failed: " . $e -> getMessage());
         }
     }
 
+   
+
     function doRegisterUser() {
-        $this->model->succes = false;
         try{
-            storeUser($this->model->email, $this->model->username, $this->model->password);
+            storeUser(
+            $this->email, 
+            $this->username, 
+            $this->password);
             $$this->succes = true;
         }
         catch(Exception $e){
             $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
-            logerror("Registraation failed: " . $e -> getMessage());
+            $this->logerror("Registraation failed: " . $e -> getMessage());
         }
-        return $data;
     }
 
     public function doLoginUser(){
@@ -237,15 +242,26 @@ class userModel extends pageModel {
 
     function doChangePassword(){
         try{
-            storeChangePassword($this->model->userId, $this->model->changepassword);
+            storeChangePassword(
+                $this->userId, 
+                $this->changepassword
+            );
             $this->succes = true;
             doLogoutUser(); 
         }
         catch(Exception $e){
             $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
-            logerror("Registraation failed: " . $e -> getMessage());
+            $this->logerror("Registraation failed: " . $e -> getMessage());
         }
     }
+
+    // function storeChangePassword(){
+    //     require_once('user_service.php');
+    //     saveChangePassword(
+    //         $this->userId,
+    //         $this->$password
+    //     );
+    // }
 
     public function doLogoutUser(){
         $this->sessionManager->doLogoutUser();
