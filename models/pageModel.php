@@ -41,9 +41,9 @@ class pageModel {
         $this->page = $newPage;
     } 
    
-    protected function getArrayVar($array, $key, $default=''){
-        return isset ($array[$key]) ? $array[$key] : $default;
-    }
+    // protected function getArrayVar($array, $key, $default=''){
+    //     return isset ($array[$key]) ? $array[$key] : $default;
+    // }
 
     protected function getSavePostVar($key, $default = '') {
         return $this->testInput($this->getArrayVar($_POST, $key, $default));
