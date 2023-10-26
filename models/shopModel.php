@@ -5,30 +5,36 @@ require_once('sessionManager.php');
 class shopModel extends pageModel{
     public $id = -1;
     public $userId= -1;
-    public $products ="";
+    public $productId= -1;
+    public $price=array();
+    public $products = array();
+    public $product = "";
+    public $productName= array();
+    public $orders ="";
     public $success = false;
 
     public function handleAction(){
         $action = $this->getSavePostVar("action");
             switch($action){
                 case 'addToCart':
-                    $this->id= getPostVar('productId');
-                    $this->page = getPostVar('page');
-                    $this->sessionManager->addToCart($this->id);
+                    $id= $this->getSavePostVar('id');
+                    $this->page = $this->getSavePostVar('page');
+                    $this->sessionManager->addToCart($id);
                     break;
                 case 'updateCart':
-                    $this->id= getPostVar('productId');
-                    $this->amount = getPostVar('amount');
-                    updateCart($this->id, $this->amount);
+                    $id= $this->getSavePostVar('id');
+                    $amount = $this->getSavePostVar('amount');
+                    updateCart($id, $amount);
                     break;
                 case 'deleteFromCart':
-                    $this->id= getPostVar('productId');
+                    $id= $this->getSavePostVar('productId');
                     deleteFromCart($id);
                     break;
                 case 'checkOutCart':
-                    $this->id= getLoggedInUserId();
-                    checkOutCart($this->id);
+                    $id= $this->getLoggedInUserId();
+                    $this->sessionManager->checkOutCart($id);
                     $this->genericErr = "Uw bestelling is succesvol afgehandeld! <br> Voor een volledig overzicht van jouw bestelling, klik op de icon 'Overzicht bestellingen' in de menubalk.";
+                    var_dump($this->genericErr);
                     break;
             }
     }
@@ -37,10 +43,10 @@ class shopModel extends pageModel{
         $this->model = array();
         $data['succes'] = false;
         try{
-            require_once 'productService.php';
-            $productId = getUrlVar('id');
-            $data['product'] = getProduct($productId);
-            $data['succes'] = true;
+            require_once ('productService.php');
+            $this->productId = $this->getSaveUrlVar($this->id);
+            $this->products = $this->getProducts($this->productId);
+            $this->succes = true;
         }
         catch(Exception $e){
             $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
@@ -62,44 +68,49 @@ class shopModel extends pageModel{
     }
 
     function doRetreiveOrders(){
-        $this->model = array();
         try{
             require_once 'productService.php';
-            $this->userId = getLoggedInUserId();
-            $this->model->orders = getOrders($userId);
-            $this->model->succes = true;
+            $userId = getLoggedInUserId();
+            $this->orders = getOrders($userId);
+            $this->succes = true;
         }
         catch(Exception $e){
             $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
             $this->logerror("Order retreiving failed: " . $e -> getMessage());
         }
-        return $data;
     }
 
     function doRetreiveShoppingCart(){
-        $this->model = array();
-        $this->model['succes'] = false;
         try{
             require_once 'productService.php';
             $this->products = getProducts();
-            $this->cart = getCart();
+            $cart = $this->sessionManager->getCart();
             $this->totalPrice = 0;
-            $this->data['cartLines'] = array();
-            foreach($this->cart as $this->productId => $this->amount){
-                $this->product = $this->products[$this->productId];
-                $this->subTotal = $this->product['price'] * $this->amount;
-                $this->totalPrice += $this->subTotal;
-                $this->data['cartLines'][] = array("productId" => $this->productId, "amount" => $this->amount,
-                                             "subTotal" => $this->subTotal, "name" => $this->product["productname"], 
-                                             "image" => $this->product["productimage"], "price" => $this->product["price"]); 
+            var_dump($cart);
+            foreach($cart as $productId => $amount){
+                if (!array_key_exists($productId, $this->products)) {
+                    continue;
+                }
+                $product = $this->products[$productId];
+
+                $subTotal = $product['price'] * $amount;
+                $this->totalPrice += $subTotal;
+
+                $this->cartLines[] = [
+                    "productId" => $productId, 
+                    "amount" => $amount,
+                    "subTotal" => $subTotal, 
+                    "productName" => $product['productname'], 
+                    "image" => $product['productimage'],
+                    "price" => $product['price']
+                ]; 
             }
-            $this->model["totalPrice"] = $this->totalPrice;
-            $this->model['succes'] = true;
+            
+            $this->succes = true;
         }
         catch(Exception $e){
             $this->model['genericErr']="Er is een technische storing. Probeer het later nog eens.";
             logerror("Product retreiving failed: " . $e -> getMessage());
         }
-        return $this->model;
     }
 }

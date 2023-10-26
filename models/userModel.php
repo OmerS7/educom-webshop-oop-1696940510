@@ -10,6 +10,8 @@ class userModel extends pageModel {
     public $passwordErr= "";
     public $repeatpassword= "";
     public $repeatpasswordErr= "";
+    public $changepasswordErr = "";
+    public $repeatchangepasswordErr = "";
     public $email = "";
     public $phone = "";
     public $salutation = "";
@@ -24,7 +26,7 @@ class userModel extends pageModel {
     public $genericErr = "";
     public $userId= 0;
     public $valid = false;
-    public $success = false;
+    public $succes = false;
 
     public function __construct($pageModel) {
         PARENT::__construct($pageModel);
@@ -32,10 +34,11 @@ class userModel extends pageModel {
 
     public function validateContact(){    
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
             $this->name = $this->getSavePostVar("name");
-           
             if (empty($this->name)) { 
-                $this->nameErr = "Voer een naam in"; 
+               $this->nameErr = "Voer een naam in"; 
+                var_dump($this->nameErr);
             } 
     
             $this->email = $this->getSavePostVar("email");
@@ -146,34 +149,34 @@ class userModel extends pageModel {
 
     function validatePassword() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-            $password = $this->getSavePostVar("password"); 
-            if (empty($password)) {  
-                $passwordErr = "Voer je huidige wachtwoord in";  
+            $this->password = $this->getSavePostVar("password"); 
+            if (empty($this->password)) {  
+                $this->passwordErr = "Voer je huidige wachtwoord in";  
             }
 
-            $changepassword = $this->getSavePostVar("changepassword");
-            if (empty($changepassword)){
-                $changepasswordErr = "Voer een nieuw wachtwoord in";
+            $this->changepassword = $this->getSavePostVar("changepassword");
+            if (empty($this->changepassword)){
+                $this->changepasswordErr = "Voer een nieuw wachtwoord in";
             }
 
-            $repeatchangepassword = $this->getSavePostVar("repeatchangepassword");
-            if (empty($repeatchangepassword)){
-                $repeatchangepasswordErr = "Herhaal het nieuwe wachtwoord";
+            $this->repeatchangepassword = $this->getSavePostVar("repeatchangepassword");
+            if (empty($this->repeatchangepassword)){
+                $this->repeatchangepasswordErr = "Herhaal het nieuwe wachtwoord";
             }
 
-            if($changepassword !== $repeatchangepassword){
-                $repeatchangepasswordErr = "Herhaal wachtwoord komt niet overeen";
+            if($this->changepassword !== $this->repeatchangepassword){
+                $this->repeatchangepasswordErr = "Herhaal wachtwoord komt niet overeen";
             }
             
-            if (empty($passwordErr) && empty($changepasswordErr) && empty($repeatchangepasswordErr)) {
+            if (empty($this->passwordErr) && empty($this->changepasswordErr) && empty($this->repeatchangepasswordErr)) {
                 try{
                     $userId = getLoggedInUserId();   
                     $userpassword = authenticateUserPassword($userId,$password); 
                     if (empty($userpassword)) {
                         $passwordErr = "Wachtwoord is ongeldig";
                     } else {
-                        $valid = true;
-                        $email = $userpassword['email'];
+                        $this->valid = true;
+                        $this->email = $userpassword['email'];
                     }
                 }
                 catch(Exception $e){
@@ -196,13 +199,50 @@ class userModel extends pageModel {
         return $this->user;   
     }
 
+    function doStoreContact() {
+        try{
+            storeContact($this->model->name, $this->model->phone, $this->model->email, 
+            $this->model->salutation, $$this->model->communication, $this->model->comment);
+            $this->model->succes = true;
+        }
+        catch(Exception $e){
+            $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
+            logerror("registration failed: " . $e -> getMessage());
+        }
+    }
+
+    function doRegisterUser() {
+        $this->model->succes = false;
+        try{
+            storeUser($this->model->email, $this->model->username, $this->model->password);
+            $$this->succes = true;
+        }
+        catch(Exception $e){
+            $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
+            logerror("Registraation failed: " . $e -> getMessage());
+        }
+        return $data;
+    }
+
     public function doLoginUser(){
         $this->sessionManager->doLoginUser($this->name, $this->userId);
         $this->genericErr="Login succesvol";
     }
 
+    function doChangePassword(){
+        try{
+            storeChangePassword($this->model->userId, $this->model->changepassword);
+            $this->succes = true;
+            doLogoutUser(); 
+        }
+        catch(Exception $e){
+            $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
+            logerror("Registraation failed: " . $e -> getMessage());
+        }
+    }
+
     public function doLogoutUser(){
-        $this->sessionManager->doLogoutUser;
+        $this->sessionManager->doLogoutUser();
     }
 
 }

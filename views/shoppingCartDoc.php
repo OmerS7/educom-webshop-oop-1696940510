@@ -1,6 +1,7 @@
 <?php
 require_once('productDoc.php');
 class shoppingCartDoc extends productDoc{
+    public $cartLines = [];
 
     function showHeader(){
     echo 'Winkelwagen';
@@ -22,13 +23,13 @@ class shoppingCartDoc extends productDoc{
             return;
         }
 
-        foreach ($this->data['cartLines'] as $cartLine){
+        foreach ($this->model->cartLines as $cartLine){
             echo '<tr>';
             echo '<td class="product" data-productid="' . $cartLine["productId"] . '">';
-            echo '<img src="Images/' . $cartLine["image"] . '" alt="' . $cartLine["name"] . '" class="product-photo">';
+            echo '<img src="Images/' . $cartLine["image"] . '" alt="' . $cartLine["productName"] . '" class="product-photo">';
             echo '<div class="product-details">';
-            echo '<span class="product-name">' . $cartLine["name"] . '</span>';
-            $this->showActionForm('updateCart', 'shoppingCart', $cartLine['productId'], "tick-svgrepo-com.svg", "", "tick", $cartLine["amount"]);
+            echo '<span class="product-name">' . $cartLine["productName"] . '</span>';
+            $this->showActionForm('updateCart', 'shoppingCart', $cartLine["productId"], "tick-svgrepo-com.svg", "", "tick", $cartLine["amount"]);
             // echo '<form method="POST" action="index.php">  
             //         <input type="hidden" name="action" value="updateCart">
             //         <input type="hidden" name="page" value="shoppingCart">
@@ -38,7 +39,7 @@ class shoppingCartDoc extends productDoc{
             //         <input type="image" class="tick-button" src="Images/tick-svgrepo-com.svg" alt="Add" width="20" height="20">
             //         </div>
             //     </form>';
-            $this->showActionForm("deleteFromCart", "shoppingCart", $cartLine['productId'], "trash-bin-svgrepo-co.svg", "", "delete");
+            $this->showActionForm("deleteFromCart", "shoppingCart", $cartLine["productId"], "trash-bin-svgrepo-co.svg", "", "delete");
             // echo '<form method="POST" action="index.php">
             //     <input type="hidden" name="action" value="deleteFromCart">
             //     <input type="hidden" name="page" value="shoppingCart">
@@ -54,13 +55,13 @@ class shoppingCartDoc extends productDoc{
         }
 
         echo '<tr>';
-        echo '<td>Totaal: &euro;' . $this->data["totalPrice"] . '</td>';
+        echo '<td>Totaal: &euro;' . $this->model->totalPrice . '</td>';
         echo '</tr>';
 
         echo '</table>';
 
 
-        if(!empty($this->data['cartLines']) ){
+        if(!empty($this->model->cartLines) ){
             $this->showActionForm('checkOutCart', 'shoppingCart', NULL, NULL, 'Order');
             // echo '<form method="POST" action="index.php">
             // <input type="hidden" name="action" value="checkOutCart">

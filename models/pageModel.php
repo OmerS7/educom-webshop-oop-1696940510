@@ -63,6 +63,14 @@ class pageModel {
     function logError($message) {
         echo "LOGGING TO THE SERVER: ". $message;
     }
+
+    public function getLoggedInUserId() {
+        if (isset($_SESSION['userId'])) {
+            return $_SESSION['userId'];
+        } else {
+            return null; // Of een andere waarde die aangeeft dat de gebruiker niet is ingelogd
+        }
+    }
   
    public function createMenu() {
 	   $this->menu['home'] = new menuItem('home', 'HOME');

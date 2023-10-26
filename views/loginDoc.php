@@ -14,7 +14,7 @@ class loginDoc extends basicDoc{
             echo '<a href="logout.php">Logout</a>';
             echo "<span>$ingelogdeEmail!</span>"; 
         } else {
-            echo '<h1>Login<h1>';
+            echo 'Login';
         }
     }
 
@@ -22,11 +22,11 @@ class loginDoc extends basicDoc{
         echo '<form method="POST" action="index.php">
                   <label for="email">E-mailadres:</label>
                   <input type="text" id="email" name="email" value="'.$this->email.'">
-                  <span class="error">* '.$this->emailErr.'</span><br><br>
+                  <span class="error">* '.$this->model->emailErr.'</span><br><br>
       
                   <label for="password">Wachtwoord:</label>
                   <input type="password" id="password" name="password" value="'.$this->password.'">
-                  <span class="error">* '.$this->passwordErr.'</span><br><br>
+                  <span class="error">* '.$this->model->passwordErr.'</span><br><br>
       
                   <div class="signInButton">
                       <input type="hidden" name="page" value="login">

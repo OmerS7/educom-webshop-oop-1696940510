@@ -35,24 +35,24 @@ class contactDoc extends basicDoc{
                         <option value="madam" '. ($this->salutation == "madam" ? "selected" : "") . '>Mevrouw</option>
                         <option value="other" '. ($this->salutation == "other" ? "selected" : "") .'>Anders</option>
                     </select>
-                    <span class="error">* '.$this->salutationErr.'</span><br><br>
+                    <span class="error">* '.$this->model->salutationErr.'</span><br><br>
                 </div>        
 
                 <div class="invoervelden">
                     <div class="nameStyling">
                         <label for="name">Naam:</label>
                         <input type="text" id="name" name="name" value="'.$this->name.'"placeholder="Jouw naam">
-                        <span class="error">* '.$this->nameErr.'</span><br><br>
+                        <span class="error">* '.$this->model->nameErr.'</span><br><br>
                     </div> 
                     <div class="phoneStyling">
                         <label for="phone">Telefoonnummer:</label>
                         <input type="text" id="phone" name="phone" value="'.$this->phone.'"placeholder="Jouw telefoonnummer">
-                        <span class="error">* '.$this->phoneErr.'</span><br><br>
+                        <span class="error">* '.$this->model->phoneErr.'</span><br><br>
                     </div>    
                     <div class= emailStyling>
                         <label for="email">E-mailadres:</label>
                         <input type="text" id="email" name="email" value="'.$this->email.'"placeholder="Jouw e-mailadres">
-                        <span class="error">* '.$this->emailErr.'</span><br><br>
+                        <span class="error">* '.$this->model->emailErr.'</span><br><br>
                     </div>    
                 </div>
 
@@ -66,12 +66,12 @@ class contactDoc extends basicDoc{
                         <input type="radio" name="communication" '.($communication =="E-mailadres" ? "checked" : "").' value="E-mailadres">
                         E-mailadres
                     </label>
-                    <span class="error">* '.$this->communicationErr.'</span><br><br>
+                    <span class="error">* '.$this->model->communicationErr.'</span><br><br>
                 </div>    
 
                 <div class="commentContact">
                     <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Voer hier je opmerkingen in">'.$this->comment.'</textarea>
-                    <span class="error">* '.$this->commentErr.'</span><br><br>
+                    <span class="error">* '.$this->model->commentErr.'</span><br><br>
                     <input type="hidden" name="page" value="contact">
                     <input type="submit" value="Verzend">
                 </div>    

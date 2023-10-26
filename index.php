@@ -113,45 +113,45 @@ $controller->handleRequest();
 //  }
 
 
-function doStoreContact($data) {
-    $data['succes'] = false;
-    try{
-        storeContact($data['name'], $data['phone'], $data['email'], $data['salutation'], $data['communication'], $data['comment']);
-        $data['succes'] = true;
-    }
-    catch(Exception $e){
-        $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
-        logerror("registration failed: " . $e -> getMessage());
-    }
-    return $data;
-}
+// function doStoreContact($data) {
+//     $data['succes'] = false;
+//     try{
+//         storeContact($data['name'], $data['phone'], $data['email'], $data['salutation'], $data['communication'], $data['comment']);
+//         $data['succes'] = true;
+//     }
+//     catch(Exception $e){
+//         $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
+//         logerror("registration failed: " . $e -> getMessage());
+//     }
+//     return $data;
+// }
 
-function doRegisterUser($data) {
-    $data['succes'] = false;
-    try{
-        storeUser($data['email'], $data['username'], $data['password']);
-        $data['succes'] = true;
-    }
-    catch(Exception $e){
-        $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
-        logerror("Registraation failed: " . $e -> getMessage());
-    }
-    return $data;
-}
+// function doRegisterUser($data) {
+//     $data['succes'] = false;
+//     try{
+//         storeUser($data['email'], $data['username'], $data['password']);
+//         $data['succes'] = true;
+//     }
+//     catch(Exception $e){
+//         $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
+//         logerror("Registraation failed: " . $e -> getMessage());
+//     }
+//     return $data;
+// }
 
-function doChangePassword($data){
-    $data['succes'] = false;
-    try{
-        storeChangePassword($data['userId'], $data['changepassword']);
-        $data['succes'] = true;
-        doLogoutUser(); 
-    }
-    catch(Exception $e){
-        $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
-        logerror("Registraation failed: " . $e -> getMessage());
-    }
-    return $data;
-}
+// function doChangePassword($data){
+//     $data['succes'] = false;
+//     try{
+//         storeChangePassword($data['userId'], $data['changepassword']);
+//         $data['succes'] = true;
+//         doLogoutUser(); 
+//     }
+//     catch(Exception $e){
+//         $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
+//         logerror("Registraation failed: " . $e -> getMessage());
+//     }
+//     return $data;
+// }
 
 // function doRetreiveProducts(){
 //     $data = array();

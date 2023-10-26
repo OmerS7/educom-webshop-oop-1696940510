@@ -36,22 +36,22 @@ class RegisterDoc extends basicDoc{
         <div class="naamStyling2">
             <label for="name">Naam:</label>
             <input type="text" id="name" name="name" value="'.$this->username.'">
-            <span class="error">* '.$this->usernameErr.'</span><br><br>
+            <span class="error">* '.$this->model->usernameErr.'</span><br><br>
         </div>
         <div class="emailStyling2">
             <label for="email">E-mailadres:</label>
             <input type="text" id="email" name="email" value="'.$this->email.'">
-            <span class="error">* '.$this->emailErr.'</span><br><br>
+            <span class="error">* '.$this->model->emailErr.'</span><br><br>
         </div>
         <div class="passwordSt">
             <label for="password">Wachtwoord:</label>
             <input type="password" id="password" name="password" value="'.$this->password.'">
-            <span class="error">* '.$this->passwordErr.'</span><br><br>
+            <span class="error">* '.$this->model->passwordErr.'</span><br><br>
         </div>    
         <div class="repeatpasswordSt">
             <label for="repeatpassword">Herhaal wachtwoord:</label>
             <input type="password" id="repeatpassword" name="repeatpassword" value="'.$this->repeatpassword.'">
-            <span class="error">* '.$this->repeatpasswordErr.'</span><br><br>
+            <span class="error">* '.$this->model->repeatpasswordErr.'</span><br><br>
         </div>
             <div class="signUpButton">
             <input type="hidden" name="page" value="register">

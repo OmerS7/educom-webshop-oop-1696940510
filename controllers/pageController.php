@@ -33,11 +33,11 @@ class pageController{
                 break;   
             case "contact":
                 $this->model = new userModel($this->model);
-                require_once('contact.php');
+                require_once('views/contactDoc.php');
                 $this->model->validateContact();
                 if($this->model->valid){
-                    $this->model->doStoreContact();
                     if ($this->model->succes) {
+                        $this->model->doStoreContact();
                         $this->model->page = "thanks";
                     }
                 }    
@@ -65,8 +65,8 @@ class pageController{
                 require_once('register.php');
                 $this->model->validateRegister();
                 if($this->model->valid){
-                    $this->model = doRegisterUser($this->model);
                     if ($this->model->succes){
+                        $this->model = doRegisterUser($this->model);
                         $this->model->page = "home";
                     }
                 }
@@ -139,12 +139,12 @@ class pageController{
             showOrderDetailContent($this->model);
             break;
         case 'detail':
-            require_once('productDetail.php');
-            showProductDetailContent($this->model);
+            require_once('views/productDetailDoc.php');
+            $view = new productDetailDoc($this->model);
             break;
         case 'thanks':
-            require_once('contact.php');
-            showContactThanks($this->model);
+            require_once('views/thanksDoc.php');
+            $view = new thanksDoc($this->model);
             break;
         case 'register':
             require_once('views/registerDoc.php');
@@ -157,12 +157,7 @@ class pageController{
         case 'changepassword':
             require_once('views/passwordCDoc.php');
             $view = new passwordCDoc($this->model);
-            break;
-        case 'logout':
-            doLogoutUser();
-            require_once('home.php');
-            showHomeContent();
-            break;   
+            break;  
         default:
             require_once('views/pageNotFoundDoc.php');
             $view = new pageNotFoundDoc($this->model);
