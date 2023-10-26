@@ -87,6 +87,9 @@ class pageController{
                 require_once('webshop.php');
                 $this->model->handleAction();
                 $this->model->doRetreiveShoppingCart();
+                if ($this->model->succes) {
+                    $this->genericErr = "Uw bestelling is succesvol afgehandeld! <br> Voor een volledig overzicht van jouw bestelling, klik op de icon 'Overzicht bestellingen' in de menubalk.";
+                }
                 break;
             case "orders":
                 $this->model = new shopModel($this->model);
