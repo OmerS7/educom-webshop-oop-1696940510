@@ -4,7 +4,7 @@ class shoppingCartDoc extends productDoc{
     public $cartLines = [];
 
     function showHeader(){
-    echo 'Winkelwagen';
+        echo 'Winkelwagen';
     }
 
     function showContent(){
