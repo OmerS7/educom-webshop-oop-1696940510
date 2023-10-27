@@ -35,7 +35,7 @@ class shopModel extends pageModel{
                     updateCart($id, $amount);
                     break;
                 case 'deleteFromCart':
-                    $id= $this->getSavePostVar('productId');
+                    $id= $this->getSavePostVar('id');
                     deleteFromCart($id);
                     break;
                 case 'checkOutCart':
@@ -108,8 +108,21 @@ class shopModel extends pageModel{
     public function doRetreiveOrders(){
         try{
             require_once 'productService.php';
+            $this->userId = getLoggedInUserId();
+            $this->orders = getOrders($this->userId);
+            $this->succes = true;
+        }
+        catch(Exception $e){
+            $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
+            $this->$this->logerror("Order retreiving failed: " . $e -> getMessage());
+        }
+    }
+
+    function doRetreiveOrderId(){
+        try{
+            $id = getPostVar('id');
             $userId = getLoggedInUserId();
-            $this->orders = getOrders($userId);
+            $this->orders = getOrder($id, $userId);
             $this->succes = true;
         }
         catch(Exception $e){
