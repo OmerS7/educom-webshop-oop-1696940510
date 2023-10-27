@@ -47,8 +47,8 @@ class pageController{
                 require_once('views/registerDoc.php');
                 $this->model->validateRegister();
                 if($this->model->valid){
+                    $this->model->doStoreUser();
                     if ($this->model->succes){
-                        $this->model = doRegisterUser();
                         $this->model->page = "home";
                         }
                     }
@@ -63,7 +63,7 @@ class pageController{
                 require_once('passwordC.php');
                 $this->model->validatePassword();
                 if ($this->model->valid){
-                    $this->model->doChangePassword();
+                    $this->model->doStorePassword();
                     if ($this->model->succes) {
                         $this->model->page = "login";
                         $this->model->emailErr = "";
