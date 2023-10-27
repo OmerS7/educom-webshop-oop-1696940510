@@ -8,7 +8,6 @@ class shoppingCartDoc extends productDoc{
     }
 
     function showContent(){
-        var_dump($_SESSION);
         echo '<table>';
         if(empty($_SESSION['cart'])){
             echo '<img src="Images/winkelmandIcon.svg" class="iconWinkelmand">';
