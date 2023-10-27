@@ -1,8 +1,6 @@
 <?php
 require_once('productDoc.php');
 class productDetailDoc extends productDoc{
-    public $product= "";
-
     protected function showHeader(){
         echo 'ProductDetail';
     }
