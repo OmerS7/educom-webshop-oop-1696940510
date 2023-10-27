@@ -1,10 +1,7 @@
 <?php
 require_once('productDoc.php');
 class ordersDoc extends productDoc{
-    public $orders ="";
-    public $products ="";
-    public $succes = true;
-
+    
     protected function showHeader(){
         echo 'Jouw Orders';
     }
