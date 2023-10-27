@@ -227,22 +227,22 @@ $controller->handleRequest();
 //     return $data;
 // }
 
-function doRetreiveOrderId(){
-    $data = array();
-    $data['succes'] = false;
-    try{
-        require_once 'productService.php';
-        $id = getPostVar('id');
-        $userId = getLoggedInUserId();
-        $data['orders'] = getOrder($id, $userId);
-        $data['succes'] = true;
-    }
-    catch(Exception $e){
-        $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
-        logerror("Order retreiving failed: " . $e -> getMessage());
-    }
-    return $data;
-}
+// function doRetreiveOrderId(){
+//     $data = array();
+//     $data['succes'] = false;
+//     try{
+//         require_once 'productService.php';
+//         $id = getPostVar('id');
+//         $userId = getLoggedInUserId();
+//         $data['orders'] = getOrder($id, $userId);
+//         $data['succes'] = true;
+//     }
+//     catch(Exception $e){
+//         $data['genericErr']="Er is een technische storing. Probeer het later nog eens.";
+//         logerror("Order retreiving failed: " . $e -> getMessage());
+//     }
+//     return $data;
+// }
 
 
 // function getArrayVar($array, $key, $default='')
