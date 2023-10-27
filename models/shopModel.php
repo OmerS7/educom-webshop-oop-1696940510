@@ -105,11 +105,11 @@ class shopModel extends pageModel{
         }
     }
 
-    public function doRetreiveOrders(){
+    public function getOrders(){
         try{
             require_once 'productService.php';
-            $this->userId = getLoggedInUserId();
-            $this->orders = getOrders($this->userId);
+            $userId = getLoggedInUserId();
+            $this->orders = getAllOrders($userId);
             $this->succes = true;
         }
         catch(Exception $e){
@@ -118,7 +118,7 @@ class shopModel extends pageModel{
         }
     }
 
-    function doRetreiveOrderId(){
+    public function doRetreiveOrderId(){
         try{
             $id = getPostVar('id');
             $userId = getLoggedInUserId();
