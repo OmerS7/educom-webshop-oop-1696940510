@@ -94,7 +94,9 @@ class pageController{
             case "orders":
                 $this->model = new shopModel($this->model);
                 require_once('orders.php');
-                $this->model->doRetreiveOrders();
+               // if ($this->model->succes) {
+                    $this->model->getOrders();
+               // }
                 break;
             case "orderDetail":
                 $this->model = new shopModel($this->model);
