@@ -64,6 +64,14 @@ class pageModel {
         echo "LOGGING TO THE SERVER: ". $message;
     }
 
+    // function getLoggedInUser() {
+    //     if (isset($_SESSION['username'])) {
+    //         return $_SESSION['username'];
+    //     } else {
+    //         return null; // Of een andere waarde die aangeeft dat de gebruiker niet is ingelogd
+    //     }
+    // }
+
     public function getLoggedInUserId() {
         if (isset($_SESSION['userId'])) {
             return $_SESSION['userId'];
