@@ -1,28 +1,6 @@
 <?php
 require_once('basicDoc.php');
-class RegisterDoc extends basicDoc{
-
-    public $name = "";
-    public $username= "";
-    public $usernameErr= "";
-    public $password= "";
-    public $passwordErr= "";
-    public $repeatpassword= "";
-    public $repeatpasswordErr= "";
-    public $email = "";
-    public $phone = "";
-    public $salutation = "";
-    public $communication = "";
-    public $comment = "";
-    public $nameErr = "";
-    public $emailErr = "";
-    public $phoneErr = "";
-    public $salutationErr = "";
-    public $communicationErr = "";
-    public $commentErr = "";
-    public $genericErr = "";
-    public $valid = false;
-    public $success = false;
+class registerDoc extends basicDoc{
 
    protected function showHeader(){
         echo 'Nu registeren';
@@ -35,22 +13,22 @@ class RegisterDoc extends basicDoc{
 
         <div class="naamStyling2">
             <label for="name">Naam:</label>
-            <input type="text" id="name" name="name" value="'.$this->username.'">
+            <input type="text" id="name" name="name" value="'.$this->model->username.'">
             <span class="error">* '.$this->model->usernameErr.'</span><br><br>
         </div>
         <div class="emailStyling2">
             <label for="email">E-mailadres:</label>
-            <input type="text" id="email" name="email" value="'.$this->email.'">
+            <input type="text" id="email" name="email" value="'.$this->model->email.'">
             <span class="error">* '.$this->model->emailErr.'</span><br><br>
         </div>
         <div class="passwordSt">
             <label for="password">Wachtwoord:</label>
-            <input type="password" id="password" name="password" value="'.$this->password.'">
+            <input type="password" id="password" name="password" value="'.$this->model->password.'">
             <span class="error">* '.$this->model->passwordErr.'</span><br><br>
         </div>    
         <div class="repeatpasswordSt">
             <label for="repeatpassword">Herhaal wachtwoord:</label>
-            <input type="password" id="repeatpassword" name="repeatpassword" value="'.$this->repeatpassword.'">
+            <input type="password" id="repeatpassword" name="repeatpassword" value="'.$this->model->repeatpassword.'">
             <span class="error">* '.$this->model->repeatpasswordErr.'</span><br><br>
         </div>
             <div class="signUpButton">

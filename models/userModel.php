@@ -102,6 +102,7 @@ class userModel extends pageModel {
             if (empty($this->usernameErr) && empty($this->emailErr) && empty($this->passwordErr) && empty($this->repeatpasswordErr)) {
             
                 try{ 
+                    require_once('user_service.php');
                     if (doesEmailExist($this->email)) {
                         $this->emailErr = "Email is al geregistreerd";
                     } else {
@@ -222,18 +223,27 @@ class userModel extends pageModel {
    
 
     function doRegisterUser() {
+//require_once('user_service.php');
         try{
             storeUser(
             $this->email, 
             $this->username, 
-            $this->password);
-            $$this->succes = true;
+            $this->password
+        );
+            $this->succes = true;
         }
         catch(Exception $e){
             $this->genericErr="Er is een technische storing. Probeer het later nog eens.";
             $this->logerror("Registraation failed: " . $e -> getMessage());
         }
     }
+
+    function storeUser(){
+        saveUser(
+            $this->$email,
+            $this->$username,
+            $this->$password);
+     }
 
     public function doLoginUser(){
         $this->sessionManager->doLoginUser($this->name, $this->userId);
@@ -262,6 +272,11 @@ class userModel extends pageModel {
     //         $this->$password
     //     );
     // }
+
+    function doesEmailExist(){
+        $this->user = findUserByEmail($this->email);
+        return !empty($this->user);
+    }
 
     public function doLogoutUser(){
         $this->sessionManager->doLogoutUser();

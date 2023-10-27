@@ -1,5 +1,5 @@
 <?php
-require_once('models/usermodel.php');
+require_once('models/userModel.php');
 require_once('models/shopModel.php');
 
 class pageController{
@@ -42,6 +42,17 @@ class pageController{
                     }
                 }    
                 break;      
+            case "register":
+                $this->model = new userModel($this->model);
+                require_once('views/registerDoc.php');
+                $this->model->validateRegister();
+                if($this->model->valid){
+                    if ($this->model->succes){
+                        $this->model = doRegisterUser();
+                        $this->model->page = "home";
+                        }
+                    }
+                    break;
             case "logout":
                 require_once('logout.php');
                 $this->model->doLogoutUser();
@@ -59,17 +70,6 @@ class pageController{
                         $this->model->password = "";
                     }
                 }    
-                break;
-            case "register":
-                $this->model = new userModel($this->model);
-                require_once('register.php');
-                $this->model->validateRegister();
-                if($this->model->valid){
-                    if ($this->model->succes){
-                        $this->model = doRegisterUser($this->model);
-                        $this->model->page = "home";
-                    }
-                }
                 break;
             case "webshop":
                 $this->model = new shopModel($this->model);
