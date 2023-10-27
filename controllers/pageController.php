@@ -24,9 +24,10 @@ class pageController{
         switch($this->model->page){
             case "login":
                 $this->model = new userModel($this->model);
-                require_once('login.php');
+                require_once('views/loginDoc.php');
                 $this->model->validateLogin();
                 if ($this->model->valid){
+                  //  $this->model->authenticateUser();
                     $this->model->doLoginUser();
                     $this->model->page = "home";
                 }
