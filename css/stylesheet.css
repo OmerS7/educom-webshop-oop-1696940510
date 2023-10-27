@@ -382,6 +382,7 @@ td {
 
 .winkelmandtext{
     display: block;
+    color: rgb(179, 179, 179);
     text-align: center;
     margin-bottom: 20px;
 }
