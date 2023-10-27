@@ -11,16 +11,16 @@ function doesPasswordExist($password){
     return !empty($userpassword);
 }
 
-// function authenticateUser($email,$password){
-//     $user = findUserByEmail($email);
-//         if (empty($user)){
-//             return null;
-//         }
-//         if ($user["password"]!=$password){
-//             return null;
-//         }
-//     return $user;   
-// }
+function authenticateUser($email,$password){
+    $user = findUserByEmail($email);
+        if (empty($user)){
+            return null;
+        }
+        if ($user["password"]!=$password){
+            return null;
+        }
+    return $user;   
+}
 
 // function authenticateUserPassword($id,$password){
 //     $userpassword = findUserById($id);
