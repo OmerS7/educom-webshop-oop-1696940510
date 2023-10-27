@@ -22,6 +22,7 @@ class userModel extends pageModel {
     public $nameErr = "";
     public $emailErr = "";
     public $phoneErr = "";
+    public $userPassword= "";
     public $salutationErr = "";
     public $communicationErr = "";
     public $commentErr = "";
@@ -172,13 +173,13 @@ class userModel extends pageModel {
             
             if (empty($this->passwordErr) && empty($this->changepasswordErr) && empty($this->repeatchangepasswordErr)) {
                 try{
-                    $userId = getLoggedInUserId();   
-                    $userpassword = authenticateUserPassword($userId,$this->password); 
-                    if (empty($userpassword)) {
-                        $passwordErr = "Wachtwoord is ongeldig";
+                    $this->userId = getLoggedInUserId();   
+                    $this->userpassword = authenticateUserPassword($this->userId,$this->password); 
+                    if (empty($this->userpassword)) {
+                        $this->passwordErr = "Wachtwoord is ongeldig";
                     } else {
                         $this->valid = true;
-                        $this->email = $userpassword['email'];
+                        $this->email = $this->userpassword['email'];
                     }
                 }
                 catch(Exception $e){
@@ -189,6 +190,16 @@ class userModel extends pageModel {
         }
     }
 
+    function authenticateUserPassword(){
+        $userpassword = findUserById($id);
+            if (empty($this->userpassword)){
+                return null;
+            }
+            if ($this->userpassword["password"]!=$this->password){
+                return null;
+            }
+    }
+    
     function authenticateUser(){
         require_once('db_repostitory.php');
         $this->user = findUserByEmail($this->email);
@@ -198,7 +209,6 @@ class userModel extends pageModel {
             if ($this->user["password"]!=$this->password){
                 return null;
             }
-        return $this->user;   
     }
 
     function doStoreContact() {
@@ -222,8 +232,7 @@ class userModel extends pageModel {
 
    
 
-    function doRegisterUser() {
-//require_once('user_service.php');
+    function doStoreUser() {
         try{
             storeUser(
             $this->email, 
@@ -238,19 +247,12 @@ class userModel extends pageModel {
         }
     }
 
-    function storeUser(){
-        saveUser(
-            $this->$email,
-            $this->$username,
-            $this->$password);
-     }
-
     public function doLoginUser(){
         $this->sessionManager->doLoginUser($this->name, $this->userId);
         $this->genericErr="Login succesvol";
     }
 
-    function doChangePassword(){
+    function doStorePassword(){
         try{
             storeChangePassword(
                 $this->userId, 
@@ -264,14 +266,6 @@ class userModel extends pageModel {
             $this->logerror("Registraation failed: " . $e -> getMessage());
         }
     }
-
-    // function storeChangePassword(){
-    //     require_once('user_service.php');
-    //     saveChangePassword(
-    //         $this->userId,
-    //         $this->$password
-    //     );
-    // }
 
     function doesEmailExist(){
         $this->user = findUserByEmail($this->email);
