@@ -9,7 +9,7 @@ class Crud {
         $username = "omer_web_shop_user";
         $password = "educom123!";
         $database = "omer_webshop";
-        $connectionString = "mysql:server= localhost;database=mydb";
+        $connectionString = "mysql:host=$server;dbname=$database";
 
         $this->pdo = new PDO($connectionString, $username, $password);
         $this->pdo ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
