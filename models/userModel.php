@@ -2,6 +2,7 @@
 require_once('pageModel.php');
 
 class userModel extends pageModel {
+    private $userCrud;
     public $name = "";
     public $username= "";
     public $usernameErr= "";

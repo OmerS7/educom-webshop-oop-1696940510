@@ -3,6 +3,7 @@ require_once('pageModel.php');
 require_once('sessionManager.php');
 
 class shopModel extends pageModel{
+    private $shopCrud;
     public $id = -1;
     public $userId= -1;
     public $productId= -1;
