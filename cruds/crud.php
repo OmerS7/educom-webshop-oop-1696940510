@@ -84,7 +84,7 @@ class Crud {
         }
     }
 
-    protected function deleteRow($sql, $params=[]) {
+    public function deleteRow($sql, $params=[]) {
         $this->connectDatabase();
 
         try {
