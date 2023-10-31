@@ -79,7 +79,7 @@ function findUserById($userId){
 
 
 
-/// wachtwoord wijzigen functie
+/// wachtwoord wijzigen functie 
 function saveChangePassword($id,$password){
     $conn = connectDatabase();
     try{
@@ -203,5 +203,4 @@ function getOrderById($id, $userId){
     }
 }
 
-// comment
 
