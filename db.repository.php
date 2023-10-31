@@ -195,11 +195,8 @@ function getOrderById($id, $userId){
               JOIN products AS p ON p.productId = pl.productId
               WHERE o.id = $id AND o.userId = $userId";
         $result = mysqli_query($conn, $sql);
-        $orders = array(); // Maak een array om de orders op te slaan
-
-        while ($row = mysqli_fetch_assoc($result)) {
-            $orders[] = $row; // Voeg elke rij toe aan de array
-        }
+        
+        $orders = mysqli_fetch_assoc($result);
         return $orders;
     } finally{
         mysqli_close($conn);
