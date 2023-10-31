@@ -2,7 +2,6 @@
 require_once('pageModel.php');
 
 class userModel extends pageModel {
-    //contactpage
     public $name = "";
     public $username= "";
     public $usernameErr= "";
@@ -27,6 +26,7 @@ class userModel extends pageModel {
     public $communicationErr = "";
     public $commentErr = "";
     public $genericErr = "";
+    public $user = "";
     public $userId= 0;
     public $valid = false;
     public $succes = false;
@@ -73,7 +73,7 @@ class userModel extends pageModel {
         }
     }
 
-    function validateRegister() {
+    public function validateRegister() {
        
         if ($_SERVER["REQUEST_METHOD"] == "POST") { 
             $this->username = $this->getSavePostVar("name"); 
@@ -119,7 +119,7 @@ class userModel extends pageModel {
 
     }
 
-    function validateLogin() {
+    public function validateLogin() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->email = $this->getSavePostVar("email");
                 if (empty($this->email)) { 
@@ -132,6 +132,7 @@ class userModel extends pageModel {
     
             if (empty($this->emailErr) && empty($this->passwordErr)){
                 try{
+                    require_once('user_service.php');
                     $this->user = authenticateUser($this->email, $this->password);
                     if (empty($this->user)) {
                         $this->emailErr = "Onbekend emailadres of onjuist wachtwoord";
@@ -148,6 +149,17 @@ class userModel extends pageModel {
                 
             } 
         }   
+    }
+
+    function authenticateUser(){
+        require_once('db_repostitory.php');
+        $user = findUserByEmail($this->email);
+            if (empty($user)){
+                return null;
+            }   
+            if ($user["password"]!=$this->password){
+                return null;
+            }
     }
 
     function validatePassword() {
@@ -200,17 +212,7 @@ class userModel extends pageModel {
             }
     }
     
-    function authenticateUser(){
-        require_once('db_repostitory.php');
-        $this->user = findUserByEmail($this->email);
-            if (empty($this->user)){
-                return null;
-            }
-            if ($this->user["password"]!=$this->password){
-                return null;
-            }
-    }
-
+  
     function doStoreContact() {
         require_once('user_service.php');
         try{
