@@ -5,6 +5,7 @@ require_once('models/shopModel.php');
 class pageController{
 
     private $model;
+    private $modelFactory;
 
     public function __construct() {
         $this->model = new pageModel(NULL);
