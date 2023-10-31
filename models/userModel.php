@@ -33,6 +33,7 @@ class userModel extends pageModel {
 
     public function __construct($pageModel) {
         PARENT::__construct($pageModel);
+        $this->userCrud = $userCrud;
     }
 
     public function validateContact(){    
