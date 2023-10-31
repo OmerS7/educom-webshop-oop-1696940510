@@ -13,6 +13,11 @@ class shopModel extends pageModel{
     public $orders ="";
     public $success = false;
 
+    public function __construct($pageModel, $shopCrud) {
+        PARENT::__construct($pageModel);
+        $this->shopCrud = $shopCrud;
+    }
+
     public function setSuccessMessage($message) {
         $this->successMessage = $message;
     }
