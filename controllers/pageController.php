@@ -31,7 +31,7 @@ class pageController{
     private function processRequest(){
         switch($this->model->page){
             case "login":
-                $shopCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
+                $userCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
                 $this->model = new userModel($this->model, $this->userCrud);
                 require_once('views/loginDoc.php');
                 $this->model->validateLogin();
@@ -42,7 +42,7 @@ class pageController{
                 }
                 break;   
             case "contact":
-                $shopCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
+                $userCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
                 $this->model = new userModel($this->model, $this->userCrud);
                 require_once('views/contactDoc.php');
                 $this->model->validateContact();
@@ -54,14 +54,14 @@ class pageController{
                 }    
                 break;      
             case "register":
-                $shopCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
+                $userCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
                 $this->model = new userModel($this->model, $this->userCrud);
                 require_once('views/registerDoc.php');
                 $this->model->validateRegister();
                 if($this->model->valid){
                     $this->model->doStoreUser();
                     if ($this->model->succes){
-                        $this->model->page = "home";
+                        $this->model->page = 'home';
                         }
                     }
                     break;
@@ -71,7 +71,7 @@ class pageController{
                 $this->model->page = "home";
                 break;
             case "changepassword":
-                $shopCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
+                $userCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
                 $this->model = new userModel($this->model, $this->userCrud);
                 require_once('passwordC.php');
                 $this->model->validatePassword();
@@ -92,7 +92,8 @@ class pageController{
                 $this->model->doRetreiveProducts();
                 break;
             case "detail":
-                $this->model = new shopModel($this->model);
+                $shopCrud = new ShopCrud($this->shopCrud); // Maak een instantie van ShopCrud
+                $this->model = new shopModel($this->model, $shopCrud); 
                 require_once('productDetail.php');
                 $this->model->doRetreiveProductId();
                 break;
@@ -115,7 +116,8 @@ class pageController{
                // }
                 break;
             case "orderDetail":
-                $this->model = new shopModel($this->model);
+                $shopCrud = new ShopCrud($this->shopCrud); // Maak een instantie van ShopCrud
+                $this->model = new shopModel($this->model, $shopCrud); 
                 require_once('orderDetail.php');
                 $this->model->doRetreiveOrderId();
                 break;
