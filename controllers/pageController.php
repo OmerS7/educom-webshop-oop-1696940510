@@ -6,10 +6,17 @@ class pageController{
 
     private $model;
     private $modelFactory;
+    public $shopCrud;
+    public $userCrud;
 
     public function __construct() {
         $this->model = new pageModel(NULL);
     }
+
+    // public function __construct($modelFactory) {
+    //     $this->modelFactory = $modelFactory;
+    //     $this->model = $this->modelFactory->createModel('page');
+    // }
 
     public function handleRequest(){
         $this->getRequest();
@@ -24,7 +31,8 @@ class pageController{
     private function processRequest(){
         switch($this->model->page){
             case "login":
-                $this->model = new userModel($this->model);
+                $shopCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
+                $this->model = new userModel($this->model, $this->userCrud);
                 require_once('views/loginDoc.php');
                 $this->model->validateLogin();
                 if ($this->model->valid){
@@ -34,7 +42,8 @@ class pageController{
                 }
                 break;   
             case "contact":
-                $this->model = new userModel($this->model);
+                $shopCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
+                $this->model = new userModel($this->model, $this->userCrud);
                 require_once('views/contactDoc.php');
                 $this->model->validateContact();
                 if($this->model->valid){
@@ -45,7 +54,8 @@ class pageController{
                 }    
                 break;      
             case "register":
-                $this->model = new userModel($this->model);
+                $shopCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
+                $this->model = new userModel($this->model, $this->userCrud);
                 require_once('views/registerDoc.php');
                 $this->model->validateRegister();
                 if($this->model->valid){
@@ -61,7 +71,8 @@ class pageController{
                 $this->model->page = "home";
                 break;
             case "changepassword":
-                $this->model = new userModel($this->model);
+                $shopCrud = new userCrud($this->userCrud); // Maak een instantie van ShopCrud
+                $this->model = new userModel($this->model, $this->userCrud);
                 require_once('passwordC.php');
                 $this->model->validatePassword();
                 if ($this->model->valid){
@@ -74,7 +85,8 @@ class pageController{
                 }    
                 break;
             case "webshop":
-                $this->model = new shopModel($this->model);
+                $shopCrud = new ShopCrud($this->shopCrud); // Maak een instantie van ShopCrud
+                $this->model = new shopModel($this->model, $shopCrud); // Geef $shopCrud door als tweede argument
                 require_once('webshop.php');
                 $this->model->handleAction();
                 $this->model->doRetreiveProducts();
@@ -85,7 +97,8 @@ class pageController{
                 $this->model->doRetreiveProductId();
                 break;
             case "shoppingCart":
-                $this->model = new shopModel($this->model);
+                $shopCrud = new ShopCrud($this->shopCrud); // Maak een instantie van ShopCrud
+                $this->model = new shopModel($this->model, $shopCrud); // Geef $shopCrud door als tweede argument
                 require_once('webshop.php');
                 $this->model->handleAction();
                 $this->model->doRetreiveShoppingCart();
@@ -94,7 +107,8 @@ class pageController{
                 }
                 break;
             case "orders":
-                $this->model = new shopModel($this->model);
+                $shopCrud = new ShopCrud($this->shopCrud); // Maak een instantie van ShopCrud
+                $this->model = new shopModel($this->model, $shopCrud); // Geef $shopCrud door als tweede argument
                 require_once('orders.php');
                // if ($this->model->succes) {
                     $this->model->getOrders();

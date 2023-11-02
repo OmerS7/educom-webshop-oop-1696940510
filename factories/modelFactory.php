@@ -11,9 +11,9 @@ class modelFactory{
 
 
     public function createModel($type){
-        $modelCrud = $this->crudFactory->createCrud($name);
+        $modelCrud = $this->crudFactory->createCrud($type);
 
-        switch ($name) {
+        switch ($type) {
             case 'page':
                 $this->lastModel = new PageModel($this->lastModel);
                 break;

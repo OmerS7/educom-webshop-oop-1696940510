@@ -9,7 +9,7 @@ class shopCrud{
     }
 
     public function getAllProducts(){
-        $sql="SELECT * FROM products"
+        $sql="SELECT * FROM products";
         $params= [];
         return $this->crud->readManyRows($sql, $params);
     }

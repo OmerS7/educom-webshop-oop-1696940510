@@ -32,7 +32,7 @@ class userModel extends pageModel {
     public $valid = false;
     public $succes = false;
 
-    public function __construct($pageModel) {
+    public function __construct($pageModel, $userCrud) {
         PARENT::__construct($pageModel);
         $this->userCrud = $userCrud;
     }

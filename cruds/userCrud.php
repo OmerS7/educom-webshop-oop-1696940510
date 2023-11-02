@@ -2,7 +2,7 @@
 
 class userCrud{
 
-    private $crud
+    private $crud;
 
     public function __construct($crud) {
         $this->crud = $crud;

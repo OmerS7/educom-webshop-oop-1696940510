@@ -14,7 +14,7 @@ class shopModel extends pageModel{
     public $orders ="";
     public $success = false;
 
-    public function __construct($pageModel, $shopCrud) {
+    public function __construct($pageModel, $shopCrud) { // Voeg $shopCrud als parameter toe
         PARENT::__construct($pageModel);
         $this->shopCrud = $shopCrud;
     }
