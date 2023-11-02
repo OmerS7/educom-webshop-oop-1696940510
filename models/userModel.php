@@ -106,7 +106,7 @@ class userModel extends pageModel {
             
                 try{ 
                     require_once('user_service.php');
-                    if (doesEmailExist($this->email)) {
+                    if ($this->doesEmailExist($this->email)) {
                         $this->emailErr = "Email is al geregistreerd";
                     } else {
                         $this->valid = true;
@@ -238,7 +238,7 @@ class userModel extends pageModel {
 
     function doStoreUser() {
         try{
-            storeUser(
+            saveUser(
             $this->email, 
             $this->username, 
             $this->password
