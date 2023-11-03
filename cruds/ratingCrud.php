@@ -8,8 +8,11 @@ class ratingCrud{
         $this->crud = $crud;
     }
 
-    public function saveRating(){
-        $sql="INSERT INTO "
+    public function saveProductRating(){
+        $sql="INSERT INTO productRating ($productId, $userId, $rating) 
+              VALUES (:productId, :userId, :rating)";
+        $params= ('productId'=> $productId, 'userId' => $userId, 'rating' => $rating);
+        return $this->crud->createRow($sql, $params);
     }
 
 
