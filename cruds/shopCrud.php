@@ -4,7 +4,7 @@ class shopCrud{
 
     private $crud;
 
-    public function __construct($crud){
+    public function __construct($crud) {
         $this->crud = $crud;
     }
 
@@ -54,7 +54,13 @@ class shopCrud{
                 WHERE o.userId = :userId
                 GROUP BY o.id";
         $params = ['userId' => $userId];
-        return $this->crud->readManyRows($sql, $params);
+        $result = $this->crud->readManyRows($sql, $params);
+
+        if ($result) {
+            return $result;
+        } else {
+            return []; // Geef een lege array terug als er geen orders zijn
+        }
     }
 
     function getOrderById($id, $userId){

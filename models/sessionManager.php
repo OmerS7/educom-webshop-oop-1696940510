@@ -70,7 +70,7 @@ class sessionManager{
 
     public function checkOutCart($id){
         $cart = $_SESSION['cart'];
-        require_once ('db.repository.php');
+        // require_once ('db.repository.php');
         saveCheckOutCart($id, $cart);
         $_SESSION['cart'] = array();
         return $cart;
