@@ -11,13 +11,12 @@ class CrudFactory {
     }
 
     public function createCrud($name) {
+        
         switch($name) {
             case 'user':
                 return new UserCrud($this->crud);
-                break;
             case 'shop':
                 return new ShopCrud($this->crud);
-                break;
         }
     }
 }
