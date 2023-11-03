@@ -1,6 +1,7 @@
 <?php
 require_once('pageModel.php');
 require_once('sessionManager.php');
+//require_once()
 
 class shopModel extends pageModel{
     private $shopCrud;
@@ -11,7 +12,7 @@ class shopModel extends pageModel{
     public $products = array();
     public $product = "";
     public $productName= array();
-    public $orders ="";
+    public $orders =array();
     public $success = false;
 
     public function __construct($pageModel, $shopCrud) { // Voeg $shopCrud als parameter toe
@@ -55,8 +56,8 @@ class shopModel extends pageModel{
 
     public function doRetreiveProducts(){
         try{
-            require_once 'productService.php';
-            $this->products = getProducts();
+        //require_once 'productService.php';
+            $this->products = $this->shopCrud->getAllProducts();
             $this->succes = true;
         }
         catch(Exception $e){
@@ -114,8 +115,8 @@ class shopModel extends pageModel{
     public function getOrders(){
         try{
             require_once 'productService.php';
-            $userId = getLoggedInUserId();
-            $this->orders = getAllOrders($userId);
+            $userId = $this->sessionManager->getLoggedInUserId();
+            $this->orders = $this->shopCrud->getAllOrders($userId);
             $this->succes = true;
         }
         catch(Exception $e){

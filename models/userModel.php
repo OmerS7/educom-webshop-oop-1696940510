@@ -154,7 +154,7 @@ class userModel extends pageModel {
     }
 
     function authenticateUser(){
-        require_once('db_repostitory.php');
+       // require_once('db_repostitory.php');
         $user = findUserByEmail($this->email);
             if (empty($user)){
                 return null;
@@ -216,7 +216,7 @@ class userModel extends pageModel {
     
   
     function doStoreContact() {
-        require_once('user_service.php');
+       // require_once('user_service.php');
         try{
             saveContact(
                 $this->name, 
