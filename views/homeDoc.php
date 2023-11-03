@@ -1,6 +1,6 @@
 <?php
-  require_once ("BasicDoc.php");
-  class HomeDoc extends BasicDoc {
+  require_once ("basicDoc.php");
+  class HomeDoc extends basicDoc {
     protected function showHeader() {
         echo 'Mijn eerste website';
     }

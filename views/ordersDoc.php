@@ -1,6 +1,6 @@
 <?php
-require_once('productDoc.php');
-class ordersDoc extends productDoc{
+require_once('webshopDoc.php');
+class ordersDoc extends webshopDoc{
     
     protected function showHeader(){
         echo 'Jouw Orders';
@@ -8,23 +8,22 @@ class ordersDoc extends productDoc{
 
     function showContent(){
     echo '<table>';
-
             if (isset($this->succes) && $this->succes) {
-                $orders = $this->orders;
+                $orders = $this->model->orders;
 
                 if (!empty($orders)) {
                 foreach ($orders as $order) {
                     echo '<tr>';
                     echo '<div class="order">';
                     echo "<h2>Uw bestelling op:</h2>";
-                    $formatted_date = date('d-m-Y', strtotime($order['orderDate']));
+                    $formatted_date = date('d-m-Y', strtotime($order->orderDate));
                     echo "<p> $formatted_date</p>";
                     echo "<p>Met ordernummer:</p>";
-                    echo "<p> $order[orderNumber]</p>";
-                    $number_format = number_format($order['total'], 2, ',', '.');
+                    echo "<p> $order->orderNumber</p>";
+                    $number_format = number_format($order->total, 2, ',', '.');
                     echo "<h3>Totaal: &euro;$number_format</h3>";
                     echo "</div>";
-                    $this->showActionForm('viewDetails', 'orderDetail', $order['id'], NULL, 'Jouw bestelling');
+                    $this->showActionForm('viewDetails', 'orderDetail', $order->id, NULL, 'Jouw bestelling');
                     echo '</tr>';
         echo '</table>';
                 }   

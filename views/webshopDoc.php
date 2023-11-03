@@ -20,14 +20,14 @@ class webshopDoc extends productDoc{
             if (!empty($products)) {
                 foreach ($products as $product) {
                     echo '<div class="webproduct">';
-                    echo "<img src='Images/$product[productimage]' alt='$product[productname]'>";
-                    echo "<h3>$product[productname]</h3>";
-                    echo "<a href='index.php?page=detail&id=$product[productId]'>Productomschrijving"; // Link naar de detailpagina
-                    $number_format = number_format($product['price'], 2, ',', '.');
+                    echo "<img src='Images/$product->productimage' alt='$product->productname'>";
+                    echo "<h3>$product->productname</h3>";
+                    echo "<a href='index.php?page=detail&id=$product->productId'>Productomschrijving"; // Link naar de detailpagina
+                    $number_format = number_format($product->price, 2, ',', '.');
                     echo "<p>Prijs: &euro;$number_format</p>";
                     echo "</a>";
                     echo "</div>";
-                    $this->showActionForm("addToCart", "webshop", $product['productId'], "cartPlus.svg");
+                    $this->showActionForm("addToCart", "webshop", $product->productId, "cartPlus.svg");
                 }
             } else {
                 echo "Er zijn geen producten beschikbaar.";

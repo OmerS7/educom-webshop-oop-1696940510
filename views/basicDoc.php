@@ -1,6 +1,6 @@
 <?php
 require_once("HtmlDoc.php");
-class Basicdoc extends HtmlDoc{
+class basicDoc extends HtmlDoc{
     protected $model;
 
     public function __construct($myData){
@@ -47,7 +47,7 @@ class Basicdoc extends HtmlDoc{
     }
 
     protected function showContent(){
-        echo 'Welkom op de bacic doc';
+        echo 'Welkom op de basic doc';
     }
 
     private function showPageContent(){
