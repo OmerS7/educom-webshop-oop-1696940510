@@ -56,7 +56,7 @@ class Crud {
                 $stmt->bindValue(":" . $key, $value);
             }
             $stmt->execute();
-
+            $result = array();
             if ($bindId == true) {
                 while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
                     $result[$row->id] = $row;
