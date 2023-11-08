@@ -9,6 +9,8 @@ class HtmlDoc{
     protected function showHeadContent(){
         echo '    <meta name="viewport" content="width=device-width, initial-scale=1.0">' . PHP_EOL;
         echo '    <link rel="stylesheet"  href="CSS/stylesheet.css">' . PHP_EOL;
+        echo '    <script src="https://kit.fontawesome.com/b766139ca2.js" crossorigin="anonymous"></script>
+        ' . PHP_EOL;
     }
     private function showHeadEnd(){
         echo '  </head>' . PHP_EOL;

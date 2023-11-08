@@ -1,5 +1,7 @@
 /* Cascade Style Sheet for this website */
 body {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100vh;
     line-height: normal;
@@ -9,8 +11,8 @@ body {
 
 header {
     margin-top: -10px;
-    min-height: 48px;
-    background-color: black;
+    height: 70px;
+    background-color: rgb(34, 34, 34);
     color: white;
     display: flex;
     justify-content: center;
@@ -20,11 +22,11 @@ header {
 
 footer{
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; 
     background-color: rgb(0, 0, 0);
     color: white;
     font-size: 10px;
-    margin-top: 0;
+    margin-top: auto;
     padding-right: 10px;
 }
 
@@ -33,12 +35,12 @@ footer{
 /*menuKnoppen*/
 .menu {
     display: flex;
+    margin-bottom: 25px;
     }
     
 .menu ul {
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center;
 }
 
 .menu ul li {
@@ -49,8 +51,8 @@ footer{
 
 .menuItem a{
     display: flex;
+    font-size: 20px;
     color: white;
-    background-color: rgb(166, 166, 166);
     text-decoration: none;
     border-radius: 10px;
     padding-top: 5px;
@@ -66,14 +68,40 @@ footer{
     padding-bottom: 2px;
 }
 
-
-
 /*inhoud van Homepagina*/
-.welcomeText {
+/* .homePageText{
+    display: flex;
+    flex-direction: column;
+} */
+
+.titelIntro{
     display: flex;
     justify-content: center;
+    font-size: 40px;
+    margin-bottom: -60px;
+}
+
+
+.welcomeText {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     color: darkgrey;
     font-size: 15px;
+    margin-top: 40px;
+}
+
+.homeAfbeelding{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row ;
+    margin-top: 20px;
+}
+
+.webshopPage, .contactPage, .cartPage {
+    width: 300px;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -111,7 +139,7 @@ footer{
 /*Contact inhoud*/
 
 input {
-    width: 400px;
+    width: 250px;
     border: none;
     border-radius: 5px;
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
@@ -217,7 +245,7 @@ input[type="submit"] {
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 40px;
-    margin-left: 1000px;
+    margin-left: 600px;
     transition: transform 0.3s;
     cursor: pointer;
 }
@@ -280,12 +308,98 @@ font-size: 30px;
     margin-bottom: 40px;
 }
 
-.webproduct img {
+.webproduct {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: rgb(30, 30, 30);
+
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
+    padding-bottom: 100px;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto; 
+    margin-bottom: 80px;
+    width: 400px;
+    height: 300px;
+}
+
+.webproduct img {
     width: 250px;
+}
+
+.product-1 {
+    margin-top: 30px;
+    padding-top: 50px;
+    color: aqua;
+}
+
+.product-1 img {
+    margin-bottom: -60px;
+}
+
+.product-2 {
+    padding-top: 50px;
+}
+
+.product-2 img {
+    margin-top: 40px;
+    width: 230px;
+
+}
+
+.product-3 {
+    padding-top: 50px;
+
+}
+
+.product-3 img {
+    margin-top: 70px;
+    width: 230px;
+
+}
+
+.product-4 {
+    padding-top: 50px;
+
+}
+
+.product-4 img {
+    width: 250px;
+    margin-bottom: -30px;
+}
+
+.product-5 {
+    padding-top: 50px;
+
+}
+
+.product-5 img {
+    width: 180px;
+    margin-bottom: -30px;
+}
+
+.product-link { 
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+} /*a tag  webshoppage*/
+
+.productName{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.productPrice{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.customButton{
+    background-color: rgb(31, 31, 31) !important;
+    border-radius: 20px;
+    color: white;
 }
 
 .shoesize img {
@@ -381,7 +495,7 @@ td {
 }
 
 .winkelmandtext{
-    display: block;
+    /* display: block; */
     color: rgb(179, 179, 179);
     text-align: center;
     margin-bottom: 20px;
@@ -412,11 +526,12 @@ button.shopButton:hover{
     background-color: rgb(179, 179, 179);
     color: black;
 }
-
-.addCart{
+/* 
+.cartIcon {
+    background-image: url('../Images/cartPlus.svg');
     display: flex;
     height: 30px;
-}
+} */
 
 .addToCartButton {
     background-color: transparent; 
@@ -497,4 +612,23 @@ button.shopButton:hover{
     margin-right: 520px;
     margin-top: 5px;
     margin-bottom: 20px;
+}
+
+/* .star {
+    font-size: 30px;
+    color: yellow;
+    cursor: pointer;
+}
+
+.star:hover {
+    color: rgb(255, 0, 0);
+} */
+
+.fa-star {
+    color: rgb(201, 201, 201);
+    cursor: pointer;
+}
+
+.fa-star:hover {
+    color: green;
 }

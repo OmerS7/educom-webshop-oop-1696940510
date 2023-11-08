@@ -18,16 +18,28 @@ class webshopDoc extends productDoc{
             $products = $this->model->products;
 
             if (!empty($products)) {
+                $productIndex= 1;
                 foreach ($products as $product) {
-                    echo '<div class="webproduct">';
-                    echo "<img src='Images/$product->productimage' alt='$product->productname'>";
-                    echo "<h3>$product->productname</h3>";
-                    echo "<a href='index.php?page=detail&id=$product->productId'>Productomschrijving"; // Link naar de detailpagina
-                    $number_format = number_format($product->price, 2, ',', '.');
-                    echo "<p>Prijs: &euro;$number_format</p>";
-                    echo "</a>";
-                    echo "</div>";
-                    $this->showActionForm("addToCart", "webshop", $product->productId, "cartPlus.svg");
+                   // echo '<div class="webproduct">';
+                   echo "<div class='webproduct product-$productIndex'>";
+                        echo "<a class='product-link' href='index.php?page=detail&id=$product->productId'>"; // Link naar de detailpagina
+                        echo "<img src='Images/$product->productimage' alt='$product->productname'>";
+                        echo "<h3 class='productName'>$product->productname</h3>";
+                        $number_format = number_format($product->price, 2, ',', '.'); // 2,50 inplaats van 2.50 (twee cijfers achter de komma)
+                        echo "<p class='productPrice'>&euro;$number_format</p>";
+                        echo "</a>";
+                   
+                        echo "<div class='rating'>";
+                                echo "<i class='fa-solid fa-star' data-index='1'></i>";
+                                echo "<i class='fa-solid fa-star' data-index='2'></i>";
+                                echo "<i class='fa-solid fa-star' data-index='3'></i>";
+                                echo "<i class='fa-solid fa-star' data-index='4'></i>";
+                                echo "<i class='fa-solid fa-star' data-index='5'></i>";
+                        echo "</div>";
+                   
+                   $this->showActionForm("addToCart", "webshop", $product->productId, NULL, "Add to cart", "custom-wrapper", null, "customButton");
+                   echo "</div>";
+                    $productIndex++;
                 }
             } else {
                 echo "Er zijn geen producten beschikbaar.";
@@ -37,13 +49,3 @@ class webshopDoc extends productDoc{
         }
         }
     }
-
-
-/*
- echo '<form method="POST" action="index.php">          
-                <input type="hidden" name="action" value="addToCart">
-                <input type="hidden" name="productId" value="'.$product["productId"].'">
-                <input type="hidden" name="page" value="webshop">
-                <button type="submit" class="addToCartButton"> <img src="Images/cartPlus.svg" class="addCart"></i></button>
-            </form>';
-*/

@@ -12,13 +12,23 @@ class basicDoc extends HtmlDoc{
     //     return isset ($array[$key]) ? $array[$key] : $default;
     // }
 
+    private function showJquery() {
+        echo '<script
+               src="https://code.jquery.com/jquery-3.7.1.min.js"
+               integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+               crossorigin="anonymous">
+               </script>';
+             '<script src="main.js"></script>';
+    }
+
     protected function showHeader() { 
         echo "Basic";
     }
 
     private function showPageHeader(){
         echo '<header><h1>';
-        $this->showHeader(); 
+        $this->showHeader();
+        $this->showMenu(); 
        echo '</h1></header>' . PHP_EOL;
     }
 
@@ -69,11 +79,13 @@ class basicDoc extends HtmlDoc{
         $this->showHeader();
         echo '</title>';
         echo '    <link rel="stylesheet"  href="CSS/stylesheet.css">' . PHP_EOL;
+        echo '    <script src="https://kit.fontawesome.com/b766139ca2.js" crossorigin="anonymous"></script>' . PHP_EOL;
+
     }
 
     protected function showBodyContent(){
         $this->showPageHeader();
-        $this->showMenu();
+       // $this->showMenu();
         $this->showPageContent();
         $this->showFooter();
     }

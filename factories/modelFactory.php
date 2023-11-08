@@ -23,6 +23,9 @@ class modelFactory{
             case 'shop':
                 $this->lastModel = new ShopModel($this->lastModel, $modelCrud);
                 break;
+            case 'rating':
+                $this->lastModel = new RatingModel($this->lastModel, $modelCrud);
+                break;
         }
         return $this->lastModel;
     }

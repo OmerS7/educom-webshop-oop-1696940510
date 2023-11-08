@@ -14,11 +14,23 @@ class pageController{
         $this->model = $this->modelFactory->createModel('page');
     }
 
-    public function handleRequest(){
-        $this->getRequest();
-        $this->processRequest();
-        $this->showResponse();
+    public function handleAjaxRequest(){
+        $ajaxController = new AjaxController();
+        $ajaxController->handleRequest();
     }
+
+    public function handleRequest(){
+        $actionValue = isset($_GET['action']) ? $_GET['action'] : (isset($_POST['action']) ? $_POST['action'] : null);
+        if ($actionValue === 'ajax') {
+            require_once('ajaxcontroller.php'); 
+            $this->handleAjaxRequest();
+        } else {    
+            $this->getRequest();
+            $this->processRequest();
+            $this->showResponse();
+        } 
+    }
+
 
     private function getRequest(){
         $this->model->getRequestedPage();

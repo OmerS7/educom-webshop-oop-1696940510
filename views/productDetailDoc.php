@@ -19,6 +19,15 @@ class productDetailDoc extends productDoc{
             echo "<p>Prijs: &euro;{$product['price']}</p>";
             echo "<img src='Images/{$product['productimage']}' alt='{$product['productname']}'>";
             echo "<p>{$product['description']}</p>";
+
+            echo "<div class='rating'>";
+            echo "<span class='star' data-rating='1'><i class='fa-solid fa-star'></i></span>";
+            echo "<span class='star' data-rating='2'><i class='fa-solid fa-star'></i></span>";
+            echo "<span class='star' data-rating='3'><i class='fa-solid fa-star'></i></span>";
+            echo "<span class='star' data-rating='4'><i class='fa-solid fa-star'></i></span>";
+            echo "<span class='star' data-rating='5'><i class='fa-solid fa-star'></i></span>";
+            echo "</div>";
+            
             echo "</div>";
             $this->showActionForm("addToCart","webshop",$product["productId"], NULL, "Toevoegen");
             // echo '<form method="POST" action="index.php">          
